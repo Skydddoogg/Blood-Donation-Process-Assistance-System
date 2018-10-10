@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 </head>
 
@@ -19,14 +21,16 @@
                 <!-- Content here -->
                 <div class="row">
                     <div class="col-4">
-                        <div class="logo">
-                            <div class="logoImg">
-                                <img src="images/logo-icon.svg" alt="">
+                        <a href="index.html">
+                            <div class="logo">
+                                <div class="logoImg">
+                                    <img src="images/logo-icon.svg" alt="">
+                                </div>
+                                <div class="logoText">
+                                    BLOOD DONOR
+                                </div>
                             </div>
-                            <div class="logoText">
-                                BLOOD DONOR
-                            </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-6">
                         <div class="menu">
@@ -46,9 +50,7 @@
                                     เข้าสู่ระบบโดย <b>รw.ร่มรื่น</b>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                    <button class="dropdown-item" type="button">Action</button>
-                                    <button class="dropdown-item" type="button">Another action</button>
-                                    <button class="dropdown-item" type="button">Something else here</button>
+                                    <button class="dropdown-item" type="button"><a href="#">Logout</a></button>
                                 </div>
                             </div>
                         </div>
@@ -65,6 +67,9 @@
     <div class="container">
         <div class="signupWrapper">
             <form id="register">
+                <div class="title">
+                    <h1>ลงทะเบียนผู้บริจาคโลหิต</h1>
+                </div>
                 <div class="step1">
                     <div class="row">
                         <div class="col-5">
@@ -73,7 +78,7 @@
                                     <span>ชื่อ<b>*</b></span>
                                 </div>
                                 <div>
-                                    <input required step="1" type="text" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                    <input required step="1" type="text" placeholder="ex. บุญมี">
                                 </div>
                             </div>
                         </div>
@@ -83,7 +88,7 @@
                                     <span>นามสกุล<b>*</b></span>
                                 </div>
                                 <div>
-                                    <input required step="1" type="text" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                    <input required step="1" type="text" placeholder="ex. มีบุญเยอะ">
                                 </div>
                             </div>
                         </div>
@@ -105,10 +110,10 @@
                         <div class="col-5">
                             <div class="inputSignup">
                                 <div>
-                                    <span>เลขบัตรประชาชน<b>*</b></span>
+                                    <span>เลขประจําตัวประชาชน<b>*</b></span>
                                 </div>
                                 <div>
-                                    <input required step='1' type="text" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                    <input required step='1' type="text" placeholder="เลขประจำตัว 13 หลัก">
                                 </div>
                             </div>
                         </div>
@@ -135,7 +140,7 @@
                                     <span>วันเกิด<b>*</b></span>
                                 </div>
                                 <div>
-                                    <input required step='1' type="date" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                    <input required step='1' type="date">
                                 </div>
                             </div>
                         </div>
@@ -144,8 +149,8 @@
                                 <div>
                                     <span>น้ำหนัก</span>
                                 </div>
-                                <div>
-                                    <input type="number" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                <div class="weightAfter">
+                                    <input type="number" placeholder="ex. 50">
                                 </div>
                             </div>
                         </div>
@@ -154,8 +159,8 @@
                                 <div>
                                     <span>ส่วนสูง</span>
                                 </div>
-                                <div>
-                                    <input type="number" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                <div class="heightAfter">
+                                    <input type="number" placeholder="ex. 165">
                                 </div>
                             </div>
                         </div>
@@ -167,7 +172,7 @@
                                     <span>โรคประจำตัว</span>
                                 </div>
                                 <div>
-                                    <input type="text" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                    <input type="text" placeholder="ex. โรคหอบหืด,โรคเบาหวาน">
                                 </div>
                             </div>
                         </div>
@@ -177,7 +182,7 @@
                                     <span>เบอร์โทร</span>
                                 </div>
                                 <div>
-                                    <input type="text" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                    <input type="text" placeholder="ex. 0811234567">
                                 </div>
                             </div>
                         </div>
@@ -189,7 +194,7 @@
                                     <span>E-Mail</span>
                                 </div>
                                 <div>
-                                    <input type="email" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                    <input type="email" placeholder="ex. blooddonor@record.com">
                                 </div>
                             </div>
                         </div>
@@ -215,10 +220,10 @@
                         <div class="col-5">
                             <div class="inputSignup">
                                 <div>
-                                    <span>Password</span>
+                                    <span>รหัสผ่าน</span>
                                 </div>
                                 <div>
-                                    <input required step="2" class="password" type="password" placeholder="รหัสผ่าน 6-8">
+                                    <input required step="2" class="password" type="password" placeholder="รหัสผ่าน 6-8 ตัวอักษร">
                                 </div>
                             </div>
                         </div>
@@ -227,7 +232,7 @@
                         <div class="col-5">
                             <div class="inputSignup">
                                 <div>
-                                    <span>Re-Password</span>
+                                    <span>ยืนยันรหัสผ่าน</span>
                                 </div>
                                 <div>
                                     <input required step="2" class="password_again" type="password" placeholder="ยืนยันรหัสผ่าน">
@@ -237,7 +242,7 @@
                     </div>
                     <div class="buttonSignup">
                         <div class="noneActiveButton backSetp">ย้อนกลับ</div>
-                        <button class="activeButton saveForm">ขั้นตอนถัดไป</button>
+                        <button class="activeButton saveForm">ยืนยันการลงทะเบียน</button>
                     </div>
                 </div>
             </form>

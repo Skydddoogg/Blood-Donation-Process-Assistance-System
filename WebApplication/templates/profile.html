@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/popper.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -23,7 +23,7 @@
                         <a href="index.html">
                             <div class="logo">
                                 <div class="logoImg">
-                                    <img src="images/logo-icon.svg" alt="">
+                                    <img src="../static/images/logo-icon.svg" alt="">
                                 </div>
                                 <div class="logoText">
                                     BLOOD DONOR
@@ -154,7 +154,7 @@
                             <div>
                                 <h3>ประวัติบริจาคโลหิต</h3>
                             </div>
-                            <div><a href="#"><img src="images/add-record.svg" alt=""></a></div>
+                            <div><a href="#"><img src="../static/images/add-record.svg" alt=""></a></div>
                         </div>
                         <table class="recordTable">
                             <thead>
@@ -166,20 +166,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        001
-                                    </td>
-                                    <td>
-                                        01/05/2561
-                                    </td>
-                                    <td>
-                                        โรงพยาบาลร่มรื่นดีจริง
-                                    </td>
-                                    <td>
-                                        ตัวแทนโรงพยาบาลร่มรื่น
-                                    </td>
-                                </tr>
+                                {% for record in records %}
+                                    {% if record is not none %}
+                                        <tr>
+                                            <td>
+                                                {{ record['ordinal'] }}
+                                            </td>
+                                            <td>
+                                                {{ record['date'] }}
+                                            </td>
+                                            <td>
+                                                {{ record['hospital'] }}
+                                            </td>
+                                            <td>
+                                                {{ record['checker'] }}
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
                             </tbody>
                         </table>
 

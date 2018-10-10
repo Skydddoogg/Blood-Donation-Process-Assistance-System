@@ -48,7 +48,7 @@ h1,h2,h3,h4,h5{
 }
 
 .menu div{
-    margin-right: 34px;
+    margin-right: 50px;
     position: relative;
     
 }
@@ -152,6 +152,21 @@ cursor:pointer;
     border:none;
 }
 
+.dropdownMenu button:hover, 
+.dropdownMenu button:active,
+.dropdownMenu button:not( :hover ){
+    background: none !important;
+    border: none !important;
+    color: #1D171B !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.dropdown:focus, .dropdown:active{
+    outline: none !important;
+
+}
+
 
 .dropdownMenu button b{
     color: #EC1D25;
@@ -180,6 +195,11 @@ cursor:pointer;
     font-family: Prompt_Light;
     padding-bottom: 10px;
 }
+
+.inputSignup div span b{
+    color: #EC1D25;
+    padding-left: 3px;
+}
 .inputSignup{
 }
 .inputSignup div{
@@ -197,10 +217,13 @@ cursor:pointer;
     background: none;
     height: 44px;
 }
+.inputSignup div textarea{
+    padding: 10px;
+    border:1px solid #EFEFEF;
+}
 
 
-
-.inputSignup div input:focus{
+.inputSignup div input:focus, .inputSignup div textarea:focus{
 border:1px solid #EC1D25;
 box-shadow: none;
 outline: none;
@@ -209,4 +232,75 @@ outline: none;
 .inputSignup div select option{
     font-family: 'Prompt-Medium';
     font-weight: bold;
+}
+.buttonSignup{
+    display: flex;
+    font-size: 14px;
+    margin-top: 25px;
+    font-family: 'Prompt-Medium';
+}
+.buttonSignup div{
+    padding: 0 40px 0 40px;
+cursor:pointer;
+transition: all .2s ease;
+}
+
+.buttonSignup button{
+    padding: 0 40px 0 40px;
+cursor:pointer;
+transition: all .2s ease;
+}
+
+.buttonSignup button:hover{
+    margin-top: 2px;
+}
+
+.buttonSignup button:nth-child(1) ,.buttonSignup div:nth-child(1){
+    margin-right: 20px;
+}
+
+.noneActiveButton{
+    border: none;
+    background-color: #CBCBCB;
+    color: #fff;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 7px 0px rgba(100,100,100,0.1);
+}
+.activeButton{
+    border: none;
+    background-color: #EC1D25;
+    color: #fff;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    
+    box-shadow: 0 4px 7px 0px rgba(100,100,100,0.1);
+}
+
+
+.step2{
+    display: none;
+}
+
+.validateConfirmPassword{
+    display: none;
+}
+
+.validateConfirmPassword p{
+    color: #EC1D25;
+    font-size: 13px;
+    font-family: Prompt_Medium;
+}
+
+.dropdown-item a{
+    color:#000;
+    transition: all .2s ease;
+    
+}
+
+.dropdown-item a:hover{
+    color: #EC1D25;
+    text-decoration: none;
 }

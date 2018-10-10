@@ -18,7 +18,7 @@
             <div class="container">
                 <!-- Content here -->
                 <div class="row">
-                    <div class="col-sm">
+                    <div class="col-4">
                         <div class="logo">
                             <div class="logoImg">
                                 <img src="images/logo-icon.svg" alt="">
@@ -28,17 +28,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm">
+                    <div class="col-6">
                         <div class="menu">
                             <div>
-                                <a href="#">หน้าแรก</a>
+                                <a href="index.html">หน้าแรก</a>
                             </div>
                             <div>
-                                <a href="#">ลงทะเบียนผู้บริจาคโลหิต</a>
+                                <a href="signup.html">ลงทะเบียนผู้บริจาคโลหิต</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm">
+                    <div class="col-2">
                         <div class="dropdownWrapper">
                             <div class="dropdownMenu dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
@@ -64,154 +64,264 @@
 
     <div class="container">
         <div class="signupWrapper">
-            <div class="row">
-                <div class="col-5">
-                    <div class="inputSignup">
-                        <div>
-                            <span>ชื่อ</span>
-                        </div>
-                        <div>
-                            <input type="text" placeholder="ชื่อจริง เช่น พงศ์ปณต">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-5">
-                    <div class="inputSignup">
-                        <div>
-                            <span>นามสกุล</span>
-                        </div>
-                        <div>
-                            <input type="text" placeholder="ชื่อจริง เช่น พงศ์ปณต">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-2">
-                    <div class="inputSignup">
-                        <div>
-                            <span>เพศ</span>
-                        </div>
-                        <div>
-                            <select>
-                                <option value="" disabled>เพศ</option>
-                                <option value="">ชาย</option>
-                                <option value="">หญิง</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-5">
-                    <div class="inputSignup">
-                        <div>
-                            <span>เลขบัตรประชาชน</span>
-                        </div>
-                        <div>
-                            <input type="number" placeholder="ชื่อจริง เช่น พงศ์ปณต">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="inputSignup">
-                        <div>
-                            <span>กรุ๊ปเลือด</span>
-                        </div>
-                        <div>
-                            <select>
-                                <option value="" disabled>กรุ๊ปเลือด</option>
-                                <option value="">A</option>
-                                <option value="">B</option>
-                                <option value="">AB</option>
-                                <option value="">O</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5">
-                    <div class="inputSignup">
-                        <div>
-                            <span>วันเกิด</span>
-                        </div>
-                        <div>
-                            <input type="date" placeholder="ชื่อจริง เช่น พงศ์ปณต">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="inputSignup">
-                        <div>
-                            <span>น้ำหนัก</span>
-                        </div>
-                        <div>
-                            <input type="number" placeholder="ชื่อจริง เช่น พงศ์ปณต">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="inputSignup">
-                        <div>
-                            <span>ส่วนสูง</span>
-                        </div>
-                        <div>
-                            <input type="number" placeholder="ชื่อจริง เช่น พงศ์ปณต">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5">
-                    <div class="inputSignup">
-                        <div>
-                            <span>โรคประจำตัว</span>
-                        </div>
-                        <div>
-                            <input type="text" placeholder="ชื่อจริง เช่น พงศ์ปณต">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-5">
-                    <div class="inputSignup">
-                        <div>
-                            <span>เบอร์โทร</span>
-                        </div>
-                        <div>
-                            <input type="text" placeholder="ชื่อจริง เช่น พงศ์ปณต">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                    <div class="col-5">
-                        <div class="inputSignup">
-                            <div>
-                                <span>E-Mail</span>
+            <form id="register">
+                <div class="step1">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>ชื่อ<b>*</b></span>
+                                </div>
+                                <div>
+                                    <input required step="1" type="text" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                </div>
                             </div>
-                            <div>
-                                <input type="email" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                        </div>
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>นามสกุล<b>*</b></span>
+                                </div>
+                                <div>
+                                    <input required step="1" type="text" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-5">
-                        <div class="inputSignup">
-                            <div>
-                                <span>ที่อยู่</span>
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>เพศ<b>*</b></span>
+                                </div>
+                                <div>
+                                    <select>
+                                        <option value="">ชาย</option>
+                                        <option value="">หญิง</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div>
-                                <textarea></textarea>
+                        </div>
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>เลขบัตรประชาชน<b>*</b></span>
+                                </div>
+                                <div>
+                                    <input required step='1' type="text" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>กรุ๊ปเลือด<b>*</b></span>
+                                </div>
+                                <div>
+                                    <select>
+                                        <option value="">A</option>
+                                        <option value="">B</option>
+                                        <option value="">AB</option>
+                                        <option value="">O</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>วันเกิด<b>*</b></span>
+                                </div>
+                                <div>
+                                    <input required step='1' type="date" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>น้ำหนัก</span>
+                                </div>
+                                <div>
+                                    <input type="number" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>ส่วนสูง</span>
+                                </div>
+                                <div>
+                                    <input type="number" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>โรคประจำตัว</span>
+                                </div>
+                                <div>
+                                    <input type="text" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>เบอร์โทร</span>
+                                </div>
+                                <div>
+                                    <input type="text" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>E-Mail</span>
+                                </div>
+                                <div>
+                                    <input type="email" placeholder="ชื่อจริง เช่น พงศ์ปณต">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>ที่อยู่</span>
+                                </div>
+                                <div>
+                                    <textarea></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttonSignup">
+                        <div class="noneActiveButton">ยกเลิก</div>
+                        <div class="activeButton nextStep">ขั้นตอนถัดไป</div>
+                    </div>
                 </div>
+
+                <div class="step2">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>Password</span>
+                                </div>
+                                <div>
+                                    <input required step="2" class="password" type="password" placeholder="รหัสผ่าน 6-8">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>Re-Password</span>
+                                </div>
+                                <div>
+                                    <input required step="2" class="password_again" type="password" placeholder="ยืนยันรหัสผ่าน">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttonSignup">
+                        <div class="noneActiveButton backSetp">ย้อนกลับ</div>
+                        <button class="activeButton saveForm">ขั้นตอนถัดไป</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+
     <script>
         $('.menu div').each(function (e) {
             if (e == 1) {
                 $(this).addClass("active");
             }
         });
+
+        $('.nextStep').on('click', function () {
+            var checkInputStep1 = true;
+            $('input[required]').each(function (e) {
+                if ($(this).attr('step') == '1') {
+                    if ($(this).val() == '') {
+                        checkInputStep1 = false
+                        $(this).focus();
+                    }
+                }
+            });
+
+            if (checkInputStep1) {
+                $('.step1').fadeOut();
+                $('.step2').fadeIn();
+            } else {
+                alert("กรุณากรอกข้อมูลที่สำคัญให้ครบถ้วน");
+            }
+
+        });
+
+        $('.backSetp').on('click', function () {
+            $('.step1').fadeIn();
+            $('.step2').fadeOut();
+        });
+
+
+        $('#register').submit(function () {
+            var checkInputStep2 = false;
+
+            if (validatePasswordLenght()) {
+
+                if (validateConfirmPassword()) {
+                    checkInputStep2 = true;
+                } else {
+                    alert("Password ไม่ตรงกัน");
+                }
+
+            } else {
+                alert("Password ต้องมี 6-8 ตัวอักษร เป็นอบ่างต่ำ");
+                checkInputStep2 = false;
+            }
+            return checkInputStep2;
+        })
+
+
+        function validatePasswordLenght() {
+            var validate = true;
+            $('input[required]').each(function (e) {
+                if ($(this).attr('step') == '2') {
+                    if ($(this).val().length < 6) {
+                        $(this).focus();
+                        validate = false;
+
+                    }
+                }
+            });
+            return validate;
+        }
+
+        function validateConfirmPassword() {
+            var validate = $('.password_again').val() == $('.password').val();
+            if (!validate) {
+                $('.password').focus();
+            }
+            return validate;
+        }
+
+
+
+
+
 
     </script>
 </body>

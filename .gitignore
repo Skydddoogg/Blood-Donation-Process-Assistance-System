@@ -27,6 +27,7 @@ Temporary Items
 .apdisk
 
 # For backend-dev branch
-.vscode
-env
+WebApplication/.vscode
+WebApplication/env
+
 

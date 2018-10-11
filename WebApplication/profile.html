@@ -11,6 +11,7 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/popup.js"></script>
 </head>
 
 <body>
@@ -44,8 +45,8 @@
                     <div class="col-2">
                         <div class="dropdownWrapper">
                             <div class="dropdownMenu dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
                                     เข้าสู่ระบบโดย <b>รw.ร่มรื่น</b>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -154,7 +155,7 @@
                             <div>
                                 <h3>ประวัติบริจาคโลหิต</h3>
                             </div>
-                            <div><a href="#"><img src="images/add-record.svg" alt=""></a></div>
+                            <div><button class="addProfile"><img src="images/add-record.svg" alt=""></button></div>
                         </div>
                         <table class="recordTable">
                             <thead>
@@ -190,6 +191,29 @@
         </div>
     </div>
 
+    <div style="display:flex; justify-content: center;">
+        <div class="addProfilePopup">
+            <form action="">
+                <div class="subtitle" style="margin-bottom:15px;">
+                    <h3>ข้อมูลติดต่อ</h3>
+                </div>
+                <div class="inputSignup">
+                    <div>
+                        <span>ผู้เก็บ<b>*</b></span>
+                    </div>
+                    <div>
+                        <input required step="1" type="text" placeholder="ex. ลงชื่อผู้เก็บ">
+                    </div>
+                </div>
+                <div class="buttonSignup" style="text-align:center;">
+                    <button class="activeButton saveForm closeOverlay" style="margin:auto;">ยืนยันการลงทะเบียน</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="overlay">
+    </div>
     <script>
         $('.menu div').each(function (e) {
             if (e == 0) {

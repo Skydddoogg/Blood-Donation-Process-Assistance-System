@@ -86,10 +86,10 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        dasda
+                                        {{ personal_infor['id'] }}
                                     </td>
                                     <td>
-                                        sdad
+                                        {{ personal_infor['username'] }}
                                     </td>
                                 </tr>
                             </tbody>
@@ -106,13 +106,13 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        พงศ์ปณต ณ อุบล
+                                        {{ personal_infor['first_name'] }} {{ personal_infor['last_name'] }}
                                     </td>
                                     <td>
-                                        AB
+                                        {{ personal_infor['blood_type'] }}
                                     </td>
                                     <td>
-                                        1234567891012
+                                        {{ personal_infor['id_number'] }}
                                     </td>
                                 </tr>
                             </tbody>
@@ -135,10 +135,10 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        javascript5@hotmail.com
+                                        {{ personal_infor['email'] }}
                                     </td>
                                     <td>
-                                        0837229298
+                                        {{ personal_infor['phone_number'] }}
                                     </td>
                                 </tr>
                             </tbody>
@@ -154,7 +154,7 @@
                             <div>
                                 <h3>ประวัติบริจาคโลหิต</h3>
                             </div>
-                            <div><a href="#"><img src="../static/images/add-record.svg" alt=""></a></div>
+                            <div><a href="{{ url_for('recordBloodDonation', id_number=id_number) }}"><img src="../static/images/add-record.svg" alt=""></a></div>
                         </div>
                         <table class="recordTable">
                             <thead>
@@ -166,24 +166,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for record in records %}
-                                    {% if record is not none %}
+                                {% if records is not none %}
+                                    {% for record in records %}
                                         <tr>
                                             <td>
-                                                {{ record['ordinal'] }}
+                                                {{ records[record]['ordinal'] }}
                                             </td>
                                             <td>
-                                                {{ record['date'] }}
+                                                {{ records[record]['date'] }}
                                             </td>
                                             <td>
-                                                {{ record['hospital'] }}
+                                                {{ records[record]['hospital'] }}
                                             </td>
                                             <td>
-                                                {{ record['checker'] }}
+                                                {{ records[record]['checker'] }}
                                             </td>
                                         </tr>
-                                    {% endif %}
-                                {% endfor %}
+                                    {% endfor %}
+                                {% endif %}
                             </tbody>
                         </table>
 
@@ -194,12 +194,29 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+
         $('.menu div').each(function (e) {
             if (e == 0) {
                 $(this).addClass("active");
             }
         });
+
+        // document.getElementById('addButton').addEventListener('click', postARecord, false);
+
+        // function postARecord(e) {
+        //     axios.post('http://127.0.0.1:5000/recordBloodDonation', {
+        //         username: "data"
+        //     }).then(function (response) {
+        //         window.location.href = '/donorProfile'
+        //     })
+        //     .catch(function (error) {
+        //         window.location.href = ''
+        //     })
+        //     e.preventDefault();
+        // }
+
     </script>
 
 </body>

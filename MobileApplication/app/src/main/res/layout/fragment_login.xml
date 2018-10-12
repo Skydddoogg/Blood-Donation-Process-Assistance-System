@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="@+id/view" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/login_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -45,12 +45,12 @@
         android:hint="เลขบัตรประชาชน"
         android:inputType="textPersonName"
         android:textColorHint="#ededed"
-        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintBottom_toTopOf="@+id/login_password"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/login_password"
         android:layout_width="wrap_content"
         android:layout_height="46dp"
         android:layout_marginBottom="8dp"
@@ -73,7 +73,7 @@
         android:layout_marginStart="8dp"
         android:text="ยินดีต้อนรับ, Blood Donor"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/username"
+        app:layout_constraintBottom_toTopOf="@+id/login_username"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view" />
 
@@ -85,21 +85,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="เข้าสู่ระบบ"
-        app:layout_constraintBottom_toTopOf="@+id/login_btn_forgotPassword"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintStart_toStartOf="@+id/view" />
-
-    <Button
-        android:id="@+id/login_btn_forgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="ลืมรหัสผ่าน"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view" />
+
 
 
 </android.support.constraint.ConstraintLayout>

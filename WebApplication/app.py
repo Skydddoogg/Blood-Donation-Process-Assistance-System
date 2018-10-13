@@ -86,37 +86,6 @@ def register():
             return redirect('/')
 
 
-# @app.route('/home')
-# @login_required
-# def home():
-#     return render_template('home.html')
-
-
-# simple method for create officer account
-# @app.route('/create_officer', methods=['GET', 'POST'])
-# def create_officer():
-#     if request.method == 'POST':
-#         req = request.json
-#         username = req['username']
-#         password = hashlib.sha1(req['password'].encode('utf-8')).hexdigest()
-#         req.pop('username', None)
-#         req.pop('password', None)
-#         firebase.put('/officer/authen', username, {'password': password})
-#         firebase.put('officer/data', username, req)
-#         return "Officer account created"
-
-
-# @app.route('/profile')
-# # @login_required
-# def get_profile():
-#     id_card = request.args.get('id_card', type=str)
-#     query = firebase.get('donor/data', id_card)
-#     if query is None:
-#         return abort(404)
-#     # TEST: Showing query result
-#     return jsonify(query)
-
-
 @login_manager.user_loader
 def user_loader(username):
     query = firebase.get('/officer/authen', username)
@@ -129,25 +98,9 @@ def user_loader(username):
     return officer
 
 
-# @login_manager.request_loader
-# def request_loader(request):
-#     req = request.json
-#     if req is None:
-#         return
-#     username = req['username']
-#     password = hashlib.sha1(req['password'].encode('utf-8')).hexdigest()
-#     query = firebase.get('/officer/authen', username)
-#     if query is None:
-#         return
-#     officer = Officer()
-#     officer.id = username
-#     officer.is_authenticated = password == query['password']
-
-
 @login_manager.unauthorized_handler
 def unauthorized_handler():
     return 'Unauthorized'
-    # return render_template('index.html')
 
 
 if __name__ == '__main__':

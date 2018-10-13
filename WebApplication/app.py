@@ -65,10 +65,8 @@ def validateAvailableId():
         req = request.json
         print("here", req)
         if firebase.get('/donor/authen', req['idcard']) is None:
-            print(True)
             return json.dumps(True)
         else:
-            print(False)
             return json.dumps(False)
 
 
@@ -83,9 +81,9 @@ def register():
             password = hashlib.sha1(json_req.pop('password')[0].encode('utf-8')).hexdigest()
             firebase.put('donor/authen', idcard, {"password": password})
             firebase.put('donor/profile', idcard, json_req)
-            return "Adding complete"
+            return redirect('/')
         else:
-            return "Duplicate ID"
+            return redirect('/')
 
 
 # @app.route('/home')

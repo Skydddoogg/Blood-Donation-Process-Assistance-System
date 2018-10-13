@@ -47,6 +47,7 @@ $('#register').submit(function () {
 
         if (validateConfirmPassword()) {
             checkInputStep2 = true;
+            alert('ระบบกำลังดำเนินการลงทะเบียน และจะกลับไปที่หน้าแรกโดยอัตโนมัติเมื่อดำเนินการเสร็จสิ้น');
         } else {
             alert("Password ไม่ตรงกัน");
         }
@@ -82,5 +83,9 @@ function validateConfirmPassword() {
 }
 
 function validateAvailableId() {
+    return axios.post('/validateAvailableId', {idcard: $('.idcard').val()})
+}
+
+function register() {
     return axios.post('/validateAvailableId', {idcard: $('.idcard').val()})
 }

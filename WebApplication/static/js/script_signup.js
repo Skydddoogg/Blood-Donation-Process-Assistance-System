@@ -14,7 +14,6 @@ $('.nextStep').on('click', function () {
             }
         }
     });
-
     if (checkInputStep1) {
         validateAvailableId().then(function (response) {
             if (response.data) {
@@ -31,7 +30,6 @@ $('.nextStep').on('click', function () {
     } else {
         alert("กรุณากรอกข้อมูลที่สำคัญให้ครบถ้วน");
     }
-
 });
 
 $('.backStep').on('click', function () {
@@ -42,16 +40,13 @@ $('.backStep').on('click', function () {
 
 $('#register').submit(function () {
     var checkInputStep2 = false;
-
     if (validatePasswordLenght()) {
-
         if (validateConfirmPassword()) {
             checkInputStep2 = true;
             alert('ระบบกำลังดำเนินการลงทะเบียน และจะกลับไปที่หน้าแรกโดยอัตโนมัติเมื่อดำเนินการเสร็จสิ้น');
         } else {
             alert("Password ไม่ตรงกัน");
         }
-
     } else {
         alert("Password ต้องมี 6 ตัวอักษร เป็นอย่างต่ำ");
         checkInputStep2 = false;
@@ -67,7 +62,6 @@ function validatePasswordLenght() {
             if ($(this).val().length < 6) {
                 $(this).focus();
                 validate = false;
-
             }
         }
     });
@@ -83,9 +77,5 @@ function validateConfirmPassword() {
 }
 
 function validateAvailableId() {
-    return axios.post('/validateAvailableId', {idcard: $('.idcard').val()})
-}
-
-function register() {
     return axios.post('/validateAvailableId', {idcard: $('.idcard').val()})
 }

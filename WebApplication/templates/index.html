@@ -75,9 +75,9 @@
                             ค้นหาผู้ใช้
                         </div>
                         <div class="searchInput">
-                            <form>
-                                <input placeholder="ex. เลขประจำตัว 13 หลัก" />
-                                <button><img src="../static/images/search-icon.svg" /></button>
+                            <form action="{{ url_for('searchForDonor') }}" method="post">
+                                <input placeholder="ex. เลขประจำตัว 13 หลัก" name="required_id_number"/>
+                                <button type="submit"><img src="../static/images/search-icon.svg" /></button>
                             </form>
                         </div>
                     </div>
@@ -99,18 +99,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% if donors is not none %}
-                                {% for donor in donors %}
-                                    <tr>
-                                        <th scope="row">{{ donors[donor]['id'] }}</th>
-                                        <td>{{ donors[donor]['first_name'] }} {{ donors[donor]['last_name'] }}</td>
-                                        <td>{{ donors[donor]['blood_type'] }}</td>
-                                        <td>{{ donors[donor]['id_number'] }}</td>
-                                        <td>{{ donors[donor]['phone_number'] }}</td>
-                                        <td>{{ donors[donor]['email'] }}</td>
-                                        <td><a href="{{ url_for('donorProfilePage', id_number=donors[donor]['id_number']) }}"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
-                                    </tr>
-                                {% endfor %}
+                            {% if result_search is not none %}
+                                <tr>
+                                    <th scope="row">XXXX ID</th>
+                                    <td>{{ result_search['firstname'][0] }} {{ result_search['lastname'][0] }}</td>
+                                    <td>{{ result_search['bloodtype'][0] }}</td>
+                                    <td>{{ id_number }}</td>
+                                    <td>{{ result_search['tel'][0] }}</td>
+                                    <td>{{ result_search['email'][0] }}</td>
+                                    <td><a href="{{ url_for('donorProfilePage', id_number=id_number) }}"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
+                                </tr>
                             {% endif %}
                         </tbody>
                     </table>

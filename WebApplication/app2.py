@@ -6,32 +6,51 @@ import hashlib
 from firebase import firebase
 from flask_cors import CORS
 from datetime import datetime
+from myconfig import database_url, donation_key, donor_profile_key
 
 app = Flask(__name__)
 CORS(app)
 app.secret_key = "bloodDonorRecorder"
-firebase = firebase.FirebaseApplication('https://testweb-e5763.firebaseio.com/', None)
+firebase = firebase.FirebaseApplication(database_url, None)
+
+@app.route('/searchResult', methods=['POST'])
+def searchForDonor():
+
+        required_id_number = request.form['required_id_number']
+
+        result = firebase.get(donor_profile_key + '/' + required_id_number, None)
+        return index(result, required_id_number)
+
 
 @app.route('/recordBloodDonation/<id_number>', methods=['GET', 'POST'])
 def recordBloodDonation(id_number):
-        records = firebase.get('/donors/blood_donation/' + id_number, None)
+
+        # Get records for ordinal definition
+        records = firebase.get(donation_key + '/' + id_number, None)
+
+        # Calculate the ordinal of donation
         if records is None:
                 ordinal = 1
         else:
                 current_ordinal = len(records)
                 ordinal = current_ordinal + 1
 
+        # Get the objection of timestamp
         now = datetime.now()
+
+        # Set current date
         current_date = "{:02d}/{:02d}/{:d}".format(now.day, now.month, now.year+543)
 
+        # Prepare the record information as JSON object
         new_record = {
-                "checker": "Chonburi Hospital",
+                "checker": request.form['checker'],
                 "date": current_date,
                 "hospital": "Chonburi Hospital",
                 "ordinal": ordinal
         }
 
-        post_result = firebase.post('/donors/blood_donation/' + id_number, new_record)
+        # Post the record into the database
+        post_result = firebase.post(donation_key + '/' + id_number, new_record)
 
         return redirect('/donorProfile/' + id_number)
 
@@ -39,21 +58,16 @@ def recordBloodDonation(id_number):
 def donorProfilePage(id_number):
 
     # Get all blood donation records of a specified donor
-    records = firebase.get('/donors/blood_donation/' + id_number, None)
+    records = firebase.get(donation_key + '/' + id_number, None)
 
     # Get the personal inforamtion
-    personal_infor = firebase.get('/donors/personal_infor/' + id_number, None)
+    personal_infor = firebase.get(donor_profile_key + '/' + id_number, None)
 
     return render_template('profile.html', records=records, personal_infor=personal_infor, id_number=id_number)
 
 @app.route('/')
-def index():
-    donors = firebase.get('/donors/personal_infor', None)
-    return render_template('index.html', donors=donors)
-
-@app.route('/login')
-def loginPage():
-    return render_template('login.html')
+def index(result_search=None, id_number=None):
+    return render_template('index.html', result_search=result_search, id_number=id_number)
 
 if __name__ == "__main__":
     app.run(debug=True)

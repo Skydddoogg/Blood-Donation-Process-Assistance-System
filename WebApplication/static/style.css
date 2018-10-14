@@ -23,3 +23,7 @@
 .menu div{
     margin-right: 20px;
 }
+
+.noneResult{
+    display: none;
+}

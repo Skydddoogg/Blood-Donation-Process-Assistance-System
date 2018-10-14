@@ -35,7 +35,7 @@
                     <div class="col-6">
                         <div class="menu">
                             <div>
-                                <a href="{{ url_for('index')}}">หน้าแรก</a>
+                                <a href="{{ url_for('index') }}">หน้าแรก</a>
                             </div>
                             <div>
                                 <a href="{{ url_for('signup') }}">ลงทะเบียนผู้บริจาคโลหิต</a>
@@ -74,9 +74,9 @@
                             ค้นหาผู้ใช้
                         </div>
                         <div class="searchInput">
-                            <form>
-                                <input placeholder="ex. เลขประจำตัว 13 หลัก" />
-                                <button><img src="../static/images/search-icon.svg" /></button>
+                            <form action="{{ url_for('searchForDonor') }}" method="post">
+                                <input placeholder="ex. เลขประจำตัว 13 หลัก" name="required_id_number"/>
+                                <button type="submit"><img src="../static/images/search-icon.svg" /></button>
                             </form>
                         </div>
                     </div>
@@ -98,16 +98,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>พงศ์ปณต ณ อุบล</td>
-                                <td>AB</td>
-                                <td>1234567891012</td>
-                                <td>0837229298</td>
-                                <td>javascript5@hotmail.com</td>
-                                <td><a href="profile.html"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
-                            </tr>
-
+                            {% if result_search is not none %}
+                                <tr>
+                                    <th scope="row">XXXX ID</th>
+                                    <td>{{ result_search['firstname'][0] }} {{ result_search['lastname'][0] }}</td>
+                                    <td>{{ result_search['bloodtype'][0] }}</td>
+                                    <td>{{ id_number }}</td>
+                                    <td>{{ result_search['tel'][0] }}</td>
+                                    <td>{{ result_search['email'][0] }}</td>
+                                    <td><a href="{{ url_for('donorProfilePage', id_number=id_number) }}"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
+                                </tr>
+                            {% endif %}
                         </tbody>
                     </table>
 
@@ -119,6 +120,21 @@
         </div>
     </div>
 
+    <script>
+        $('.menu div').each(function (e) {
+            if (e == 0) {
+                $(this).addClass("active");
+            }
+        });
+        var checkListNull = $(".userList > table > tbody > tr").html() == null;
+        if (checkListNull) {
+            $(".noneResult").css({ "display": "block" });
+        } else {
+            $(".noneResult").css({ "display": "none" });
+        }
+
+        
+    </script>
 </body>
 
 <script src="../static/js/script_index.js"></script>

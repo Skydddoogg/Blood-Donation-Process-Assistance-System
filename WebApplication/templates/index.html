@@ -22,7 +22,7 @@
                 <!-- Content here -->
                 <div class="row">
                     <div class="col-4">
-                        <a href="index.html">
+                        <a href="{{ url_for('index') }}">
                             <div class="logo">
                                 <div class="logoImg">
                                     <img src="../static/images/logo-icon.svg" alt="">
@@ -36,10 +36,10 @@
                     <div class="col-6">
                         <div class="menu">
                             <div>
-                                <a href="index.html">หน้าแรก</a>
+                                <a href="{{ url_for('index') }}">หน้าแรก</a>
                             </div>
                             <div>
-                                <a href="signup.html">ลงทะเบียนผู้บริจาคโลหิต</a>
+                                <a href="{{ url_for('signup') }}">ลงทะเบียนผู้บริจาคโลหิต</a>
                             </div>
                         </div>
                     </div>
@@ -48,10 +48,10 @@
                             <div class="dropdownMenu dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    เข้าสู่ระบบโดย <b>รw.ร่มรื่น</b>
+                                    เข้าสู่ระบบโดย <b>{{ session['username'] }}</b>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                    <button class="dropdown-item" type="button"><a href="#">Logout</a></button>
+                                    <button class="dropdown-item" type="button"><a href="{{ url_for('logout') }">Logout</a></button>
                                 </div>
                             </div>
                         </div>
@@ -121,7 +121,6 @@
         </div>
     </div>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         $('.menu div').each(function (e) {
             if (e == 0) {

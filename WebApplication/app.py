@@ -1,29 +1,87 @@
+
 import os
-import hashlib
-import json
-from models.Officer import Officer
-from flask import Flask, render_template, request, abort, redirect, url_for, jsonify, session
+from flask import session, redirect, request, Flask, render_template, url_for
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
-from flask_cors import CORS
 from flask_session import Session
+import json
+import hashlib
 from firebase import firebase
+from flask_cors import CORS
+from datetime import datetime
+
+from models.Officer import Officer
+from myconfig import database_url, donation_key, donor_profile_key
 
 app = Flask(__name__)
 CORS(app)
-app.secret_key = os.urandom(24)
+app.secret_key = "bloodDonorRecorder"
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
-firebase = firebase.FirebaseApplication('https://fit-sanctum-169618.firebaseio.com/', None)
+firebase = firebase.FirebaseApplication(database_url, None)
 
+@app.route('/searchResult', methods=['POST'])
+def searchForDonor():
+
+    if request.method == 'POST':
+        required_id_number = request.form['required_id_number']
+
+        if required_id_number == '':
+            return redirect('/')
+        else:
+            result = firebase.get(donor_profile_key + '/' + required_id_number, None)
+            return index(result, required_id_number)
+
+
+@app.route('/recordBloodDonation/<id_number>', methods=['GET', 'POST'])
+def recordBloodDonation(id_number):
+
+        # Get records for ordinal definition
+        records = firebase.get(donation_key + '/' + id_number, None)
+
+        # Calculate the ordinal of donation
+        if records is None:
+                ordinal = 1
+        else:
+                current_ordinal = len(records)
+                ordinal = current_ordinal + 1
+
+        # Get the objection of timestamp
+        now = datetime.now()
+
+        # Set current date
+        current_date = "{:02d}/{:02d}/{:d}".format(now.day, now.month, now.year+543)
+
+        # Prepare the record information as JSON object
+        new_record = {
+                "checker": request.form['checker'],
+                "date": current_date,
+                "hospital": session['username'],
+                "ordinal": ordinal
+        }
+
+        # Post the record into the database
+        post_result = firebase.post(donation_key + '/' + id_number, new_record)
+
+        return redirect('/donorProfile/' + id_number)
+
+@app.route('/donorProfile/<id_number>')
+def donorProfilePage(id_number):
+
+    # Get all blood donation records of a specified donor
+    records = firebase.get(donation_key + '/' + id_number, None)
+
+    # Get the personal inforamtion
+    personal_infor = firebase.get(donor_profile_key + '/' + id_number, None)
+
+    return render_template('profile.html', records=records, personal_infor=personal_infor, id_number=id_number)
 
 @app.route('/')
-def index():
+def index(result_search=None, id_number=None):
     if current_user.is_authenticated:
-        return render_template('index.html')
+        return render_template('index.html', result_search=result_search, id_number=id_number)
     else:
         return render_template('login.html')
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -102,6 +160,6 @@ def user_loader(username):
 def unauthorized_handler():
     return 'Unauthorized'
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
+

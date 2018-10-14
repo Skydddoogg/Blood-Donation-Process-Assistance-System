@@ -27,7 +27,6 @@ public class HistoryFragment extends Fragment {
     private TextView bloodType;
     private TextView age;
     private TextView times;
-    private int donateTimes;
 
     @Nullable
     @Override
@@ -47,16 +46,15 @@ public class HistoryFragment extends Fragment {
         name = getView().findViewById(R.id.home_name);
         bloodType = getView().findViewById(R.id.home_bloodType);
         age = getView().findViewById(R.id.home_age);
-        times = getView().findViewById(R.id.home_times);
-        myRef = database.getReference("/donors/personal_infor/1350100453843");
-
+//        times = getView().findViewById(R.id.home_times);
+        myRef = database.getReference("/donor/profile/1234567890111");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                name.setText(dataSnapshot.child("first_name").getValue(String.class) + " " + dataSnapshot.child("last_name").getValue(String.class));
-                bloodType.setText("กรุ๊ปเลือด : " + dataSnapshot.child("blood_type").getValue(String.class));
+                name.setText(dataSnapshot.child("firstname").child("0").getValue(String.class) + " " + dataSnapshot.child("lastname").child("0").getValue(String.class));
+                bloodType.setText("กรุ๊ปเลือด : " + dataSnapshot.child("bloodtype").child("0").getValue(String.class));
                 age.setText("อายุ : " + "Unknown");
-                times.setText("เข้าบริจาคเลือดทั้งหมด : " + donateTimes + " ครั้ง");
+//                times.setText("เข้าบริจาคเลือดทั้งหมด : " + histories.size()  + " ครั้ง");
                 Log.i("HISTORY", "RETREIVE USERPROFILE SUCCESS");
             }
 
@@ -69,8 +67,8 @@ public class HistoryFragment extends Fragment {
 
     public void showHistory(){
         //This function use to show History that get from firebase and show on LiseView
-        myRef = database.getReference("/donors/blood_donation/1350100453843");
-
+        times = getView().findViewById(R.id.home_times);
+        myRef = database.getReference("/donor/blood_donation/1234567890111");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -79,8 +77,8 @@ public class HistoryFragment extends Fragment {
                 historyList.setAdapter(historyAdapter);
                 for (DataSnapshot child : dataSnapshot.getChildren()){
                     histories.add(child.getValue(History.class));
-                    donateTimes++;
                 }
+                times.setText("เข้าบริจาคเลือดทั้งหมด : " + histories.size() + " ครั้ง");
                 Log.i("HISTORY", "RETREIVE HISTORY SUCCESS");
             }
             @Override

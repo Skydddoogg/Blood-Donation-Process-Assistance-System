@@ -16,7 +16,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class HistoryFragment extends Fragment {
 
@@ -46,15 +50,13 @@ public class HistoryFragment extends Fragment {
         name = getView().findViewById(R.id.home_name);
         bloodType = getView().findViewById(R.id.home_bloodType);
         age = getView().findViewById(R.id.home_age);
-//        times = getView().findViewById(R.id.home_times);
         myRef = database.getReference("/donor/profile/1234567890111");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 name.setText(dataSnapshot.child("firstname").child("0").getValue(String.class) + " " + dataSnapshot.child("lastname").child("0").getValue(String.class));
                 bloodType.setText("กรุ๊ปเลือด : " + dataSnapshot.child("bloodtype").child("0").getValue(String.class));
-                age.setText("อายุ : " + "Unknown");
-//                times.setText("เข้าบริจาคเลือดทั้งหมด : " + histories.size()  + " ครั้ง");
+                age.setText("อายุ : " + getAge(dataSnapshot.child("dob").child("0").getValue(String.class)) + " ปี");
                 Log.i("HISTORY", "RETREIVE USERPROFILE SUCCESS");
             }
 
@@ -86,5 +88,14 @@ public class HistoryFragment extends Fragment {
                 Log.i("HISTORY", "ERROR CAN'T RETREIVE HISTORY FROM FIREBASE");
             }
         });
+    }
+
+    public int getAge(String dateOfBirth){
+        int age;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String[] year = dateOfBirth.split("-");
+        age = Integer.parseInt(sdf.format(timestamp)) - Integer.parseInt(year[0]) + 543;
+        return age;
     }
 }

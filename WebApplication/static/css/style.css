@@ -1,0 +1,503 @@
+@font-face {
+    font-family: Prompt_Light;
+    src: url(../fonts/Prompt-Light.ttf);
+}
+@font-face {
+    font-family: Prompt_Medium;
+    src: url(../fonts/Prompt-Medium.ttf);
+}
+
+h1,h2,h3,h4,h5{
+    font-family: Prompt_Medium;
+}
+#header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #EFEFEF;
+    margin-bottom: 30px;
+}
+
+.wrapper{
+    width: 1024px;
+    margin:auto;
+}
+.logo, .menu{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}
+.logo{
+    float: left;
+}
+
+.logoText{
+    font-size: 25px;
+    font-family: Prompt_Medium;
+    margin-left: 12px;
+    color:#1D171B;
+}
+
+.menu{
+    float: right;
+    display: flex;
+}
+
+.menu div{
+    margin-right: 50px;
+    position: relative;
+    
+}
+
+.menu div a{
+    font-family: Prompt_Medium;
+    color:#1D171B;
+    text-decoration: none;
+}
+
+.menu div a:hvoer{
+
+}
+.active{
+    position: relative;
+}
+.active ::after{
+    content:"";
+    width: 100%;
+    bottom: -26px;
+    left: 0;  
+    position: absolute;
+    border-bottom:2px solid #EC1D25;
+}
+
+#homepage{
+    width: 100%;
+}
+
+.searchBox{
+    width: 600px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column; 
+    text-align: center;
+}
+.searchInput{
+    position: relative;
+}
+.searchInput button{
+background:none;
+border: 0;
+position: absolute;
+top: 0;
+right: 15px;
+height: 100%;
+display: flex;
+align-items: center;
+cursor:pointer;
+}
+
+
+.searchBox div:nth-child(1){
+    width: 100%;
+    text-align: left;   
+    font-size: 15px;
+    font-family: 'Prompt_Light';
+    margin-bottom: 10px;
+    color:#1D171B;
+}
+.searchBox div input{
+    width: 600px;
+    padding:12px 20px 12px 20px;
+    border:1px solid #EFEFEF;
+    border-radius: 2px;
+}
+
+.searchBox div input::placeholder{
+    color:#B7B6B6;
+}
+.userList{
+    width: 100%;
+    margin-top: 45px;
+}
+
+.userList > table > tbody > tr:hover{
+    background-color: #EFEFEF;
+}
+
+.userList > table > tbody > tr{
+    font-size: 16px;
+    font-family: 'Prompt_Light';
+    color:#1D171B;
+}
+.userList > table > thead > tr{
+    font-size: 14px;
+    font-family: 'Prompt_Light';
+    color: #B7B6B6;
+}
+
+.dropdownWrapper{
+    float: right;
+    display: flex;
+}
+
+.dropdownMenu button{
+    color: #1D171B;
+    font-family: Prompt_Medium;
+    background:none;
+    border:none;
+}
+
+.dropdownMenu button:hover, 
+.dropdownMenu button:active,
+.dropdownMenu button:not( :hover ){
+    background: none !important;
+    border: none !important;
+    color: #1D171B !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.dropdown:focus, .dropdown:active{
+    outline: none !important;
+
+}
+
+
+.dropdownMenu button b{
+    color: #EC1D25;
+}
+.noneResult{
+    width: 100%;
+    text-align: center;
+    color: #B7B6B6;
+    margin-top:80px;
+}
+.noneResult h1{
+    font-family: Prompt_Medium;
+}
+
+.signupWrapper{
+    width: 600px;
+    margin:auto;
+}
+
+.inputSignup{
+    margin-bottom: 24px;
+}
+
+.inputSignup div span{
+    font-size: 16px;
+    font-family: Prompt_Light;
+    padding-bottom: 10px;
+}
+
+.inputSignup div span b{
+    color: #EC1D25;
+    padding-left: 3px;
+}
+.inputSignup{
+}
+.inputSignup div{
+    display: flex;
+    flex-direction: column;
+}
+.inputSignup div input::placeholder{
+    color: #B7B6B6;
+}
+.inputSignup div input, .inputSignup div select{
+    width: 100%;
+    border:1px solid #EFEFEF;
+    padding:9px 25px 9px 15px;
+    transition:all .2s ease;
+    background: none;
+    height: 44px;
+}
+.inputSignup div textarea{
+    padding: 10px;
+    border:1px solid #EFEFEF;
+}
+
+
+.inputSignup div input:focus, .inputSignup div textarea:focus{
+border:1px solid #EC1D25;
+box-shadow: none;
+outline: none;
+}
+
+.inputSignup div select option{
+    font-family: 'Prompt-Medium';
+    font-weight: bold;
+}
+.buttonSignup{
+    display: flex;
+    font-size: 14px;
+    margin-top: 25px;
+    font-family: 'Prompt-Medium';
+}
+.buttonSignup div{
+    padding: 0 40px 0 40px;
+cursor:pointer;
+transition: all .2s ease;
+}
+
+.buttonSignup button{
+    padding: 0 40px 0 40px;
+cursor:pointer;
+transition: all .2s ease;
+}
+
+.buttonSignup button:hover{
+    margin-top: 2px;
+}
+
+.buttonSignup button:nth-child(1) ,.buttonSignup div:nth-child(1){
+    margin-right: 20px;
+}
+
+.noneActiveButton{
+    border: none;
+    background-color: #CBCBCB;
+    color: #fff;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    transition: all .2s ease;
+    box-shadow: 0 4px 7px 0px rgba(100,100,100,0.1);
+}
+.activeButton{
+    border: none;
+    background-color: #EC1D25;
+    color: #fff;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    transition: all .2s ease;
+    box-shadow: 0 4px 7px 0px rgba(100,100,100,0.1);
+}
+
+.activeButton:hover{
+    background-color: #DD1B22;
+}
+
+.noneActiveButton:hover{
+    background-color: #BFBFBF;
+}
+
+.step2{
+    display: none;
+}
+
+.validateConfirmPassword{
+    display: none;
+}
+
+.validateConfirmPassword p{
+    color: #EC1D25;
+    font-size: 13px;
+    font-family: Prompt_Medium;
+}
+
+.dropdown-item a{
+    color:#000;
+    transition: all .2s ease;
+    
+}
+
+.dropdown-item a:hover{
+    color: #EC1D25;
+    text-decoration: none;
+}
+
+.login{
+    width: 300px;
+    margin: auto;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.logoLogin{
+    float: left;
+    margin-bottom: 30px;
+}
+.logoLoginText:after{
+    float: left;
+    content: '';
+    width: 50%;
+    border-bottom: 2px solid #EC1D25;
+}
+
+.loginButton{
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.loginButton span{
+    width: 100%;
+    font-size: 14px;
+    font-family: Prompt_Medium;
+    text-align: center;
+}
+.title{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    justify-content: center;
+}
+.title h1{
+    font-size: 30px;
+    font-family: Prompt_Medium;
+}
+
+.title:after{
+    float: left;
+    content: '';
+    width: 20%;
+    margin:auto;
+    margin-top: 11px;
+    border-bottom: 2px solid #EC1D25;
+}
+
+.profile{
+    width: 100%;
+}
+
+.profileTable{
+    width: 100%;
+    margin-bottom: 65px;
+}
+.profileTable > thead {
+    font-family: Prompt_Light;
+    color: #B7B6B6;
+    font-size: 13px;
+}
+.profileTable > tbody > tr > td{
+    font-family: Prompt_Light;
+    font-size: 16px;
+    color: #1D171B;
+} 
+
+.subtitle h3:after{
+    float: left;
+    content: '';
+    width: 40%;
+    margin:auto;
+    margin-top: 3px;
+    border-bottom: 2px solid #EC1D25;
+}
+.subtitle{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 29px;
+}
+.subtitle h3{
+    font-size: 20px;
+    font-family: Prompt_Medium;
+}
+
+.recordTable{
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.recordTable > thead {
+    font-family: Prompt_Light;
+    color: #B7B6B6;
+    font-size: 13px;
+    border-bottom:1px solid #CBCBCB;
+}
+
+.recordTable > thead > tr > th{
+    padding-bottom: 15px;
+}
+.recordTable > tbody > tr > td{
+    font-family: Prompt_Light;
+    font-size: 16px;
+    color: #1D171B;
+    padding-top: 15px;
+    padding-bottom: 15px;
+} 
+
+.recordTable > tbody > tr{
+    border-bottom: 1px solid #B7B6B6;
+}
+
+.recordTable > tbody > tr:hover{
+    background-color: #EFEFEF;
+}
+.weightAfter, .heightAfter{
+    position: relative;
+}
+
+.weightAfter::after{
+    content: "Kg.";
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 13px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    }
+
+.heightAfter::after{
+content: "Cm.";
+position: absolute;
+right: 10px;
+top: 0;
+font-size: 13px;
+height: 100%;
+display: flex;
+align-items: center;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+
+.addProfile{
+    background: none;
+    border:none;
+}
+
+
+.overlay{
+    background-color: #000;
+    opacity: 0.7;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top:0;
+    left: 0;
+    display: none;
+    transition: all .5s ease;
+    z-index: 2;
+}
+
+.addProfilePopup{
+    width: 350px;
+    background-color: #fff;
+    padding: 40px;
+    position: fixed;
+    top: 40%;
+    z-index: 9;
+    margin: auto;
+    display: none;
+    border-radius: 2px;
+}

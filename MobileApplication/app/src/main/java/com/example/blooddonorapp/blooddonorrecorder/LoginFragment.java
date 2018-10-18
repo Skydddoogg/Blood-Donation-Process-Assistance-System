@@ -44,11 +44,12 @@ public class LoginFragment extends Fragment {
         session = new SessionManager(getContext());
         if (session.checkLogin()) {
             Extensions.goTo(getActivity(), new HistoryFragment());
+        } else {
+            initLoginBtn();
         }
-        initLoginBtn();
     }
 
-    void initLoginBtn() {
+    public void initLoginBtn() {
         Button buttonLogin = getView().findViewById(R.id.login_btn_login);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +68,7 @@ public class LoginFragment extends Fragment {
         });
     }
 
-    void login() {
+    public void login() {
         ref = database.getReference("/donor/authen/" + username + "/password");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -82,7 +83,6 @@ public class LoginFragment extends Fragment {
                     }
                 } catch (NullPointerException e) {
                     Log.d("LOGIN", e.toString());
-                    Log.d("LOGIN", "CAN'T LOGIN");
                 }
             }
 

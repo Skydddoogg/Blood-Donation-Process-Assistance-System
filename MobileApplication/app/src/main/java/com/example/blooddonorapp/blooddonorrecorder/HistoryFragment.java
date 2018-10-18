@@ -49,9 +49,13 @@ public class HistoryFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         session = new SessionManager(getContext());
-        showHistory();
-        showUserProfile();
-        initLogoutBtn();
+        if (!session.checkLogin()) {
+            Extensions.goTo(getActivity(), new LoginFragment());
+        } else {
+            showHistory();
+            showUserProfile();
+            initLogoutBtn();
+        }
     }
 
     public void showUserProfile(){
@@ -119,7 +123,7 @@ public class HistoryFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 session.logoutUser();
-                Log.d("REGISTERFRAGMENT", "Goto LoginFragment");
+                Log.d("HISTORY", "Goto LoginFragment");
                 Extensions.goTo(getActivity(), new LoginFragment());
             }
         });

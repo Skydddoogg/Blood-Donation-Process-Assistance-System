@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -80,7 +81,10 @@ public class LoginFragment extends Fragment {
                         Extensions.goTo(getActivity(), new HistoryFragment());
                         Log.d("LOGIN", "GO TO HOMEPAGE");
                     } else {
-                        Log.d("LOGIN", "CAN'T LOGIN");
+                        Toast.makeText(
+                                getActivity(), "รหัสผ่านไม่ถูกต้อง", Toast.LENGTH_SHORT
+                        ).show();
+                        Log.d("LOGIN", "FAIL TO LOGIN");
                     }
                 } catch (NullPointerException e) {
                     Log.d("LOGIN", e.toString());

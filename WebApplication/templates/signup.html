@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/popper.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div id="header">
+        <div class="wrapper">
+            <div class="container">
+                <!-- Content here -->
+                <div class="row">
+                    <div class="col-4">
+                        <a href="{{ url_for('index') }}">
+                            <div class="logo">
+                                <div class="logoImg">
+                                    <img src="../static/images/logo-icon.svg" alt="">
+                                </div>
+                                <div class="logoText">
+                                    BLOOD DONOR
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <div class="menu">
+                            <div>
+                                <a href="{{ url_for('index') }}">หน้าแรก</a>
+                            </div>
+                            <div>
+                                <a href="{{ url_for('signup') }}">ลงทะเบียนผู้บริจาคโลหิต</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="dropdownWrapper">
+                            <div class="dropdownMenu dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    เข้าสู่ระบบโดย <b>{{ session['username'] }}</b>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <button class="dropdown-item" type="button"><a href="{{ url_for('logout') }}">Logout</a></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="signupWrapper">
+            <form id="register" action="/register" method="POST">
+                <div class="title">
+                    <h1>ลงทะเบียนผู้บริจาคโลหิต</h1>
+                </div>
+                <div class="step1">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>ชื่อ<b>*</b></span>
+                                </div>
+                                <div>
+                                    <input required step="1" type="text" placeholder="ex. บุญมี" name='firstname'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>นามสกุล<b>*</b></span>
+                                </div>
+                                <div>
+                                    <input required step="1" type="text" placeholder="ex. มีบุญเยอะ" name='lastname'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>เพศ<b>*</b></span>
+                                </div>
+                                <div>
+                                    <select name="gender">
+                                        <option value="male">ชาย</option>
+                                        <option value="female">หญิง</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>เลขประจําตัวประชาชน<b>*</b></span>
+                                </div>
+                                <div>
+                                    <input required step='1' class='idcard' type="text" placeholder="เลขประจำตัว 13 หลัก" name="idcard">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>กรุ๊ปเลือด<b>*</b></span>
+                                </div>
+                                <div>
+                                    <select name="bloodtype">
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="AB">AB</option>
+                                        <option value="O">O</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>วันเกิด<b>*</b></span>
+                                </div>
+                                <div>
+                                    <input required step='1' type="date" name='dob'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>น้ำหนัก</span>
+                                </div>
+                                <div class="weightAfter">
+                                    <input type="number" placeholder="ex. 50" name='weight'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>ส่วนสูง</span>
+                                </div>
+                                <div class="heightAfter">
+                                    <input type="number" placeholder="ex. 165" name='height'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>โรคประจำตัว</span>
+                                </div>
+                                <div>
+                                    <input type="text" placeholder="ex. โรคหอบหืด,โรคเบาหวาน" name='disease'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>เบอร์โทร</span>
+                                </div>
+                                <div>
+                                    <input type="text" placeholder="ex. 0811234567" name='tel'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>E-Mail</span>
+                                </div>
+                                <div>
+                                    <input type="email" placeholder="ex. blooddonor@record.com" name="email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>ที่อยู่</span>
+                                </div>
+                                <div>
+                                    <textarea name="address"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttonSignup">
+                        <div class="noneActiveButton">ยกเลิก</div>
+                        <div class="activeButton nextStep">ขั้นตอนถัดไป</div>
+                    </div>
+                </div>
+
+                <div class="step2">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>รหัสผ่าน</span>
+                                </div>
+                                <div>
+                                    <input required step="2" class="password" type="password" placeholder="รหัสผ่าน 6-8 ตัวอักษร" name="password">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="inputSignup">
+                                <div>
+                                    <span>ยืนยันรหัสผ่าน</span>
+                                </div>
+                                <div>
+                                    <input required step="2" class="password_again" type="password" placeholder="ยืนยันรหัสผ่าน">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttonSignup">
+                        <div class="noneActiveButton backStep">ย้อนกลับ</div>
+                        <button class="activeButton saveForm">ยืนยันการลงทะเบียน</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+<script src="../static/js/script_signup.js"></script>
+
+</html>

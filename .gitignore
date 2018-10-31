@@ -2,6 +2,9 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+**/env
+**/__pycache__
+**/**/__pycache__
 
 # Icon must end with two \r
 Icon
@@ -25,4 +28,9 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# For backend-dev branch
+WebApplication/.vscode
+WebApplication/env
+
 

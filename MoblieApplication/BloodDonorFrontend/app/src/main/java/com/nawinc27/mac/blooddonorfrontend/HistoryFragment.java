@@ -79,12 +79,12 @@ public class HistoryFragment extends Fragment {
                 name.setText(nameStr);
                 bloodType.setText("กรุ๊ปเลือด : " + bloodtypeStr);
                 age.setText("อายุ : " + ageInt + " ปี");
-                Log.i("HISTORY", "RETREIVE USERPROFILE SUCCESS");
+                Log.i("HISTORY", "RETREIVE USER PROFILE SUCCESS");
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.i("HISTORY", "ERROR CAN'T RETREIVE USERPROFILE FROM FIREBASE");
+                Log.i("HISTORY", "ERROR CAN'T RETREIVE USER PROFILE FROM FIREBASE");
             }
         });
     }
@@ -100,6 +100,7 @@ public class HistoryFragment extends Fragment {
                 final HistoryAdapter historyAdapter = new HistoryAdapter(getActivity(),
                         R.layout.list_item_history, histories);
                 historyList.setAdapter(historyAdapter);
+                histories.clear();
                 for (DataSnapshot child : dataSnapshot.getChildren()){
                     histories.add(child.getValue(History.class));
                 }
@@ -111,7 +112,7 @@ public class HistoryFragment extends Fragment {
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.i("HISTORY", "ERROR CAN'T RETREIVE HISTORY FROM FIREBASE");
+                Log.i("HISTORY", "ERROR CANNOT RETREIVE HISTORY FROM FIREBASE");
             }
         });
     }

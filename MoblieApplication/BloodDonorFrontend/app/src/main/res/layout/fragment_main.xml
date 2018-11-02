@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:text="Blood Donor"
+            android:text="Blood Donation Recorder"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             app:fontFamily="@font/prompt_medium"

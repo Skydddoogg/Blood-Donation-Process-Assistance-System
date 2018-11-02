@@ -75,7 +75,7 @@
                         </div>
                         <div class="searchInput">
                             <form action="{{ url_for('searchForDonor') }}" method="post">
-                                <input placeholder="ex. เลขประจำตัว 13 หลัก" name="required_id_number"/>
+                                <input placeholder="ex. เลขประจำตัว 13 หลัก" name="required_id_number" maxlength="13"/>
                                 <button type="submit"><img src="../static/images/search-icon.svg" /></button>
                             </form>
                         </div>

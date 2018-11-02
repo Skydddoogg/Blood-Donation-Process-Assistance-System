@@ -5,13 +5,13 @@
     <item
         android:icon="@drawable/nav_home"
         android:title="@string/nav_home" />
-    <item
-        android:icon="@drawable/nav_search"
-        android:title="@string/nav_find" />
-    <item
-        android:icon="@drawable/nav_list"
-        android:title="@string/nav_rec" />
-    <item
-        android:icon="@drawable/nav_person"
-        android:title="@string/nav_profile" />
+    <!--<item-->
+        <!--android:icon="@drawable/nav_search"-->
+        <!--android:title="@string/nav_find" />-->
+    <!--<item-->
+        <!--android:icon="@drawable/nav_list"-->
+        <!--android:title="@string/nav_rec" />-->
+    <!--<item-->
+        <!--android:icon="@drawable/nav_person"-->
+        <!--android:title="@string/nav_profile" />-->
 </menu>

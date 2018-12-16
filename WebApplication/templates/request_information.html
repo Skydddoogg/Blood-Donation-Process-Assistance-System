@@ -2,7 +2,7 @@
 
 <div class="container pages" page="confirmation">
     <div class="title" style="margin-bottom:0px;">
-        <h1>ตรวจสอบคุณสมบัติ</h1>
+        <h1>คำร้องขอเข้ารับบริจาคเลือด</h1>
     </div>
 
     <div class="request_information_container">
@@ -13,43 +13,20 @@
                         <tr>
                             <!-- <th scope="col">ID</th> -->
                             <th scope="col">ชื่อ - สกุล</th>
-                            <th scope="col">กรุ๊ปเลือด</th>
                             <th scope="col">เลขบัตรประชาชน</th>
-                            <th scope="col">เบอร์โทร</th>
-                            <th scope="col">E-Mail</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-
-                        <tr>
-                            <!-- <th scope="row">XXXX ID</th> -->
-                            <td>Pongpanot Na Ubon</td>
-                            <td>A</td>
-                            <td>9999999999999</td>
-                            <td>0837229298</td>
-                            <td>javascript5@hotmail.com</td>
-                            <td><a href="/donorProfile/9999999999999"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
-                        </tr>
-                        <tr>
-                            <!-- <th scope="row">XXXX ID</th> -->
-                            <td>Pongpanot Na Ubon</td>
-                            <td>A</td>
-                            <td>9999999999999</td>
-                            <td>0837229298</td>
-                            <td>javascript5@hotmail.com</td>
-                            <td><a href="/donorProfile/9999999999999"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
-                        </tr>
-                        <tr>
-                            <!-- <th scope="row">XXXX ID</th> -->
-                            <td>Pongpanot Na Ubon</td>
-                            <td>A</td>
-                            <td>9999999999999</td>
-                            <td>0837229298</td>
-                            <td>javascript5@hotmail.com</td>
-                            <td><a href="/donorProfile/9999999999999"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
-                        </tr>
-
+                        {% if donors is not none %}
+                            {% for donor in donors  %}
+                                <tr>
+                                    <td>{{ donors[donor]['firstname'][0] }} {{ donors[donor]['lastname'][0] }}</td>
+                                    <td>{{ donor }}</td>
+                                    <td><a href="{{ url_for('donorProfilePage', id_number=donor) }}"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
                     </tbody>
                 </table>
 

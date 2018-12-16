@@ -10,7 +10,7 @@ from flask_cors import CORS
 from datetime import datetime
 
 from models.Officer import Officer
-from myconfig import database_url, donation_key, donor_profile_key
+from myconfig import database_url, donation_key, donor_profile_key, officer_key, form_key, form_request_checker
 
 app = Flask(__name__)
 CORS(app)
@@ -19,6 +19,27 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
 firebase = firebase.FirebaseApplication(database_url, None)
+
+@app.route('/confirmation/<request_id>', methods=['GET', 'POST'])
+def confirmation(request_id):
+
+    # Get specified request
+    confirmation = firebase.get(form_key + '/' + request_id, None)
+
+    return render_template('confirmation.html', confirmation=confirmation)
+
+@app.route('/requestInformation', methods=['GET', 'POST'])
+def requestInformation():
+    
+    # Get all donation requests and their donors
+    hospital = session['id']
+    donation_requests = firebase.get(form_key + '/' + hospital, None)
+
+    donors = {}
+    for donor in donation_requests:
+        donors[donor] = firebase.get(donor_profile_key + '/' + donor, None)
+
+    return render_template('request_information.html', donation_requests=donation_requests, donors=donors)
 
 @app.route('/searchResult', methods=['POST'])
 def searchForDonor():
@@ -65,6 +86,14 @@ def recordBloodDonation(id_number):
 
         return redirect('/donorProfile/' + id_number)
 
+@app.route('/sendPreDonationForm/<id_number>', methods=['GET', 'POST'])
+def sendPreDonationForm(id_number):
+
+    # Switch request status for specified donor (False -> True)
+    firebase.put(form_request_checker, id_number, {"request": True})
+
+    return redirect('/donorProfile/' + id_number)
+
 @app.route('/donorProfile/<id_number>')
 def donorProfilePage(id_number):
 
@@ -75,14 +104,6 @@ def donorProfilePage(id_number):
     personal_infor = firebase.get(donor_profile_key + '/' + id_number, None)
 
     return render_template('profile.html', records=records, personal_infor=personal_infor, id_number=id_number)
-
-@app.route('/confirmation', methods=['GET', 'POST'])
-def confirmation():
-    return render_template('confirmation.html')
-
-@app.route('/requestInformation', methods=['GET', 'POST'])
-def requestInformation():
-    return render_template('request_information.html')
 
 @app.route('/')
 def index(result_search=None, id_number=None):
@@ -159,6 +180,7 @@ def user_loader(username):
         return redirect('/')
     query_userdata = firebase.get('/officer/data', username)
     session['username'] = query_userdata['hospital_name_th']
+    session['id'] = username
     officer = Officer()
     officer.id = username
     return officer

@@ -7,12 +7,13 @@
                 <div class="title">
                     <h1>ข้อมูลผู้บริจาคโลหิต</h1>
                 </div>
-
-                <div class="send_questionnaire">
-                    <div class="activeButton nextStep">
-                            ส่งแบบสอบถาม
+                <form action="{{ url_for('sendPreDonationForm', id_number=id_number) }}" method="post">
+                    <div class="send_questionnaire">
+                        <div class="activeButton nextStep">
+                                <button class="activeButton saveForm closeOverlay" style="margin:auto;" type="submit">ส่งแบบสอบถาม</button>
+                        </div>
                     </div>
-                </div>
+                </form>
 
 
                 <div class="row">

@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.nawinc27.mac.blooddonorfrontend.utility.Extensions;
 import com.nawinc27.mac.blooddonorfrontend.utility.SessionManager;
 
+import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 
 public class LoginFragment extends Fragment {
@@ -64,7 +65,8 @@ public class LoginFragment extends Fragment {
                         .findViewById(R.id.login_password))
                         .getText()
                         .toString();
-                hashedPassword = DigestUtils.sha1Hex(password);
+//                hashedPassword = DigestUtils.sha1Hex(password);
+                hashedPassword = new String(Hex.encodeHex(DigestUtils.sha(password)));
                 login();
             }
         });

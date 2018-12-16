@@ -5,6 +5,7 @@
 **/env
 **/__pycache__
 **/**/__pycache__
+**/**/.idea
 
 # Icon must end with two \r
 Icon

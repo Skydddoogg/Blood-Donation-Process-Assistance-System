@@ -122,7 +122,7 @@ public class HistoryFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String[] year = dateOfBirth.split("-");
-        age = Integer.parseInt(sdf.format(timestamp)) - Integer.parseInt(year[0]) + 543;
+        age = Integer.parseInt(sdf.format(timestamp)) - Integer.parseInt(year[0]);
         return age;
     }
 

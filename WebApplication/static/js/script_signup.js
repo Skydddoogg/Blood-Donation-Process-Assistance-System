@@ -4,6 +4,8 @@ $('.menu div').each(function (e) {
     }
 });
 
+let statusLoading = true
+
 $('.nextStep').on('click', function () {
     var checkInputStep1 = true;
     $('input[required]').each(function (e) {
@@ -14,7 +16,11 @@ $('.nextStep').on('click', function () {
             }
         }
     });
+
+
+    
     if (checkInputStep1) {
+        if (validateCardNumberLength()) {
         validateAvailableId().then(function (response) {
             if (response.data) {
                 $('.step1').fadeOut();
@@ -22,12 +28,23 @@ $('.nextStep').on('click', function () {
             } else {
                 alert("เลขบัตรประชาชนนี้ได้ลงทะเบียนไปแล้ว");
             }
+            statusLoading = false
+
+            if(!statusLoading){
+                $('.loading').fadeOut();
+            }
+            
             return response.data
         })
         .catch(function (error) {
             console.log(error);
         });
+        }else{
+            statusLoading = true;
+            alert("กรุณากรอกเลขบัตรประชาชนให้ครบ 13 หลัก");
+        }
     } else {
+        statusLoading = true;
         alert("กรุณากรอกข้อมูลที่สำคัญให้ครบถ้วน");
     }
 });
@@ -35,6 +52,7 @@ $('.nextStep').on('click', function () {
 $('.backStep').on('click', function () {
     $('.step1').fadeIn();
     $('.step2').fadeOut();
+    statusLoading = true;
 });
 
 
@@ -68,6 +86,24 @@ function validatePasswordLenght() {
     return validate;
 }
 
+
+//Input Only Number Function for idCard Field
+$(".idcard").keypress(function (e) {
+    var charCode = (e.which) ? e.which : e.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+});
+
+function validateCardNumberLength() {
+    var cardNumberLenght = $('input[name="idcard"]').val().length
+    if (cardNumberLenght == 13) {
+        return true
+    } else {
+        return false
+    }
+}
+
 function validateConfirmPassword() {
     var validate = $('.password_again').val() == $('.password').val();
     if (!validate) {
@@ -77,5 +113,10 @@ function validateConfirmPassword() {
 }
 
 function validateAvailableId() {
+    if(statusLoading){
+        $('.loading').css({'display':'flex'})
+        $('.loading').fadeIn();
+    }
     return axios.post('/validateAvailableId', {idcard: $('.idcard').val()})
+    
 }

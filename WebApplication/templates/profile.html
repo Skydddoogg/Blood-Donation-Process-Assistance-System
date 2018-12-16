@@ -1,68 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-    <script src="../static/js/jquery-3.3.1.min.js"></script>
-    <script src="../static/js/popper.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/popup.js"></script>
-</head>
-
-<body>
-    <div id="header">
-        <div class="wrapper">
-            <div class="container">
-                <!-- Content here -->
-                <div class="row">
-                    <div class="col-4">
-                        <a href="{{ url_for('index') }}">
-                            <div class="logo">
-                                <div class="logoImg">
-                                    <img src="../static/images/logo-icon.svg" alt="">
-                                </div>
-                                <div class="logoText">
-                                    BLOOD DONOR
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6">
-                        <div class="menu">
-                            <div>
-                                <a href="{{ url_for('index') }}">หน้าแรก</a>
-                            </div>
-                            <div>
-                                <a href="{{ url_for('signup') }}">ลงทะเบียนผู้บริจาคโลหิต</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <div class="dropdownWrapper">
-                            <div class="dropdownMenu dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    เข้าสู่ระบบโดย <b>{{ session['username'] }}</b>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                    <button class="dropdown-item" type="button"><a href="{{ url_for('logout') }}">Logout</a></button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-            </div>
-
-        </div>
-    </div>
+{% include 'header.html' %}
 
     <div class="container">
         <div class="row">
@@ -155,7 +91,7 @@
                             <div>
                                 <h3>ประวัติบริจาคโลหิต</h3>
                             </div>
-                            <div><button class="addProfile"><img src="../static/images/add-record.svg" alt=""></button></div>
+                            <div><button class="addProfile popupButton"><img src="../static/images/add-record.svg" alt=""></button></div>
                         </div>
                         <table class="recordTable">
                             <thead>
@@ -217,13 +153,8 @@
     </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-        $('.menu div').each(function (e) {
-            if (e == 0) {
-                $(this).addClass("active");
-            }
-        });
-    </script>
+    
+   
 
 </body>
 

@@ -76,6 +76,14 @@ def donorProfilePage(id_number):
 
     return render_template('profile.html', records=records, personal_infor=personal_infor, id_number=id_number)
 
+@app.route('/confirmation', methods=['GET', 'POST'])
+def confirmation():
+    return render_template('confirmation.html')
+
+@app.route('/requestInformation', methods=['GET', 'POST'])
+def requestInformation():
+    return render_template('request_information.html')
+
 @app.route('/')
 def index(result_search=None, id_number=None):
     if current_user.is_authenticated:

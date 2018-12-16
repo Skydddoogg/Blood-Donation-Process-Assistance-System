@@ -36,19 +36,30 @@ h1,h2,h3,h4,h5{
 }
 
 .logoText{
-    font-size: 25px;
+    font-size: 20px;
     font-family: Prompt_Medium;
     margin-left: 12px;
+    justify-content: space-around;
     color:#1D171B;
 }
 
+.dropdown-menu{
+    right: 0;
+    left:none;
+}
+.menu_contianer{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+
+}
 .menu{
     float: right;
     display: flex;
+    justify-content: space-evenly;
 }
 
 .menu div{
-    margin-right: 50px;
     position: relative;
     
 }
@@ -393,11 +404,15 @@ transition: all .2s ease;
     margin:auto;
     margin-top: 3px;
     border-bottom: 2px solid #EC1D25;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 .subtitle{
     display: flex;
     justify-content: space-between;
     margin-bottom: 29px;
+    position: relative;
 }
 .subtitle h3{
     font-size: 20px;
@@ -495,7 +510,7 @@ input[type=number] {
     background-color: #fff;
     padding: 40px;
     position: fixed;
-    top: 40%;
+    top: 30%;
     z-index: 9;
     margin: auto;
     display: none;
@@ -529,6 +544,68 @@ input[type=number] {
     stroke-dasharray:281;
     -webkit-animation: dash 2.5s infinite linear forwards;
   }
-  
+  .confirmation_item_top{
+    width: 100%;
+    margin: auto;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  .confirmation_item_top h1{
+    font-size: 25px;
+    font-family: Prompt_Medium;
+  }
+  .confirmation_item_top::after{
+    float: left;
+    content: '';
+    width: 20%;
+    margin-top: 11px;
+    border-bottom: 2px solid #EC1D25;
+  }
+  .confirmation_item_bottom{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+  }
+  .confirmation_item_bottom_item{
+      width: 33.33%;
+      padding: 10px;
+  }
+  .confirmation_item_bottom_key{
+    font-size: 16px;
+    margin-bottom: 10px;
+    width: 100%;
+    word-wrap: break-word;
+    color: #3a3a3a;
+  }
+  .confirmation_item_bottom_value{
+    font-size: 17px;
+      font-weight: bold;
+      width: 100%;
+      word-wrap: break-word;
+  }
+
+  .confirmation_item{
+      margin-bottom: 30px;
+  }
+
+  .confirmation_form{
+      margin-bottom: 50px;
+  }
+
+  .line{
+      width: 100%;
+      height: 1px;
+      background-color: #EFEFEF;
+      margin-top: 20px;
+      margin-bottom: 20px;
+  }
+
+  .confirmation_button{
+      justify-content: center;
+      margin-top: 40px;
+      margin-bottom: 40px;
+  }
   /*Animation*/
   @-webkit-keyframes dash{ from{stroke-dashoffset:814;} to {stroke-dashoffset:-814;}}

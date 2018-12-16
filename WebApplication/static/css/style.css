@@ -379,6 +379,7 @@ transition: all .2s ease;
 }
 
 .profile{
+    position: relative;
     width: 100%;
 }
 
@@ -606,6 +607,23 @@ input[type=number] {
       justify-content: center;
       margin-top: 40px;
       margin-bottom: 40px;
+  }
+
+  .send_questionnaire{
+    display: flex;
+    font-size: 14px;
+    margin-top: 25px;
+    font-family: 'Prompt-Medium';
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin: 0;
+  }
+
+  .send_questionnaire > div{
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
   }
   /*Animation*/
   @-webkit-keyframes dash{ from{stroke-dashoffset:814;} to {stroke-dashoffset:-814;}}

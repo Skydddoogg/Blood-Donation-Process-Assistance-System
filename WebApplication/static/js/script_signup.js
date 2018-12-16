@@ -1,8 +1,4 @@
-$('.menu div').each(function (e) {
-    if (e == 1) {
-        $(this).addClass("active");
-    }
-});
+
 
 let statusLoading = true
 

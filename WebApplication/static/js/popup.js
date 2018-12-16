@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-    $(".addProfile").on('click',function(){
+    $(".popupButton").on('click',function(){
         $('.overlay').css({'display':'block'});
         $('.addProfilePopup').fadeIn();
     });

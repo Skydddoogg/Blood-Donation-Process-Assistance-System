@@ -32,10 +32,10 @@ public class HistoryAdapter extends ArrayAdapter<History> {
         TextView date = historyItem.findViewById(R.id.history_time);
         TextView hospital = historyItem.findViewById(R.id.history_location);
         TextView checker = historyItem.findViewById(R.id.history_hospital);
-        TextView ordinal = historyItem.findViewById(R.id.history_count);
+//        TextView ordinal = historyItem.findViewById(R.id.history_count);
 
         History row = histories.get(position);
-        ordinal.setText(Integer.toString(row.getOrdinal()));
+//        ordinal.setText(Integer.toString(row.getOrdinal()));
         date.setText("วันที่ : " + row.getDate());
         hospital.setText("สถานที่บริจาค : " + row.getHospital());
         checker.setText("ผู้เก็บ : " + row.getChecker());

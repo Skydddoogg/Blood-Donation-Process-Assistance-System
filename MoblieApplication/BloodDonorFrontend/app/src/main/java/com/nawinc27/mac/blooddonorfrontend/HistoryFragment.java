@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,8 +35,6 @@ public class HistoryFragment extends Fragment {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef;
     private TextView name;
-    private TextView bloodType, id_number;
-    private TextView age;
     private TextView times;
     private SessionManager session;
 
@@ -44,13 +43,14 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        return inflater.inflate(R.layout.fragment_mainpage, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         session = new SessionManager(getContext());
+
         if (!session.checkLogin()) {
             Extensions.goTo(getActivity(), new LoginFragment());
         } else {
@@ -58,27 +58,26 @@ public class HistoryFragment extends Fragment {
             showUserProfile();
             initLogoutBtn();
         }
+
+        TextView goto_from_btn = getActivity().findViewById(R.id.goto_from_btn);
+        goto_from_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Extensions.goTo(getActivity(), new FormFragment());
+            }
+        });
     }
 
     public void showUserProfile(){
         //This function use to show User profile by setText in fragment_history
         name = getView().findViewById(R.id.main_name);
-        bloodType = getView().findViewById(R.id.main_bloodtype);
-        id_number = getView().findViewById(R.id.main_id_number);
-        age = getView().findViewById(R.id.main_age);
         myRef = database.getReference("/donor/profile/" + session.getUsername());
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String nameStr = dataSnapshot.child("firstname").child("0").getValue(String.class)
                         + " " + dataSnapshot.child("lastname").child("0").getValue(String.class);
-                String bloodtypeStr = dataSnapshot.child("bloodtype").child("0").getValue(String.class);
-                String id_numberStr = session.getUsername();
-                int ageInt = getAge(dataSnapshot.child("dob").child("0").getValue(String.class));
-                id_number.setText("เลขประจำตัวประชาชน : " + id_numberStr);
                 name.setText(nameStr);
-                bloodType.setText("กรุ๊ปเลือด : " + bloodtypeStr);
-                age.setText("อายุ : " + ageInt + " ปี");
                 Log.i("HISTORY", "RETREIVE USER PROFILE SUCCESS");
             }
 
@@ -91,7 +90,6 @@ public class HistoryFragment extends Fragment {
 
     public void showHistory(){
         //This function use to show History that get from firebase and show on LiseView
-        times = getView().findViewById(R.id.main_n_of_donation);
         myRef = database.getReference("/donor/blood_donation/" + session.getUsername());
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -104,10 +102,11 @@ public class HistoryFragment extends Fragment {
                 for (DataSnapshot child : dataSnapshot.getChildren()){
                     histories.add(child.getValue(History.class));
                 }
-
+                Log.i("TESTTTT " , histories.size()+"");
                 Collections.reverse(histories);
+                times = getView().findViewById(R.id.main_number_donate);
+                times.setText(""+histories.size());
 
-                times.setText("เข้าบริจาคเลือดทั้งหมด : " + histories.size() + " ครั้ง");
                 Log.i("HISTORY", "RETREIVE HISTORY SUCCESS");
             }
             @Override
@@ -127,7 +126,7 @@ public class HistoryFragment extends Fragment {
     }
 
     public void initLogoutBtn() {
-        ImageButton logoutBtn = getView().findViewById(R.id.main_btn_logout);
+        ImageView logoutBtn = getView().findViewById(R.id.main_btn_logout);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

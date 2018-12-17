@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.res.ResourcesCompat;
+import android.util.Log;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +18,10 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.nawinc27.mac.blooddonorfrontend.form.Form;
+import com.nawinc27.mac.blooddonorfrontend.utility.Extensions;
 import com.nawinc27.mac.blooddonorfrontend.utility.SessionManager;
+
+import java.util.ArrayList;
 
 public class FormFragment extends Fragment {
     private Button hospitalName, submitForm;
@@ -38,12 +43,12 @@ public class FormFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         session = new SessionManager(getContext());
-
         hospitalName = getView().findViewById(R.id.spinner1);
         submitForm = getView().findViewById(R.id.form_submit);
         backButton = getView().findViewById(R.id.imageView5);
 
         initQuestion();
+        initBackBtn();
 
         submitForm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +76,7 @@ public class FormFragment extends Fragment {
 
     }
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -81,7 +87,44 @@ public class FormFragment extends Fragment {
         if(getArguments() != null){
             bundle = getArguments();
             button.setText(bundle.getString("hospitalname"));
+            button.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
         }
+    }
+
+    public void changeFontFamily(){
+        q1.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q2.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q3.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q4.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q5.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q6.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q7.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q8.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q9.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q10.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q11.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q12.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q13.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q14.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q15.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q16.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q17.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q18.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q19.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q20.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q21.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q22.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q23.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q24.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q25.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q26.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q27.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q28.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q29.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q30.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q31.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+        q32.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.prompt_light));
+
     }
 
     public void initQuestion(){
@@ -121,11 +164,23 @@ public class FormFragment extends Fragment {
             q32 = getView().findViewById(R.id.q32);
 
             ansQ2 = getView().findViewById(R.id.ans_q2);
+            changeFontFamily();
         }catch (Exception e){
             e.printStackTrace();
         }
 
     }
+
+    public void initBackBtn(){
+        ImageView backBtn = getActivity().findViewById(R.id.back_btn_form);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Extensions.goTo(getActivity(), new HistoryFragment());
+            }
+        });
+    }
+
 
     public boolean checkForm(){
         boolean result = false;

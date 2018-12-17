@@ -223,8 +223,8 @@
         <div class="line"></div>
         <form action="{{ url_for('approvement', id_number=donor_id, request_form=raw_form ,_external=True) }}" method="post">
             <div class="confirmation_button buttonSignup">
-                <button class="noneActiveButton" style="margin:auto;" type="submit" name="approvement" value="reject"><div>ยกเลิก</div></button>
-                <div class="activeButton popupButton">ยืนยัน</div>
+                <button class="noneActiveButton" type="submit" name="approvement" value="reject">ยกเลิก</button>
+                <button class="activeButton popupButton">ยืนยัน</button>
             </div>
         </form>
 

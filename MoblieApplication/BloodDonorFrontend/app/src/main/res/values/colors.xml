@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#000</color>
-    <color name="colorPrimaryDark">#681111</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000</color>
     <color name="colorAccent">#a22f2f</color>
     <color name="colorDarkGrey">#3e3c3c</color>
+    <color name="colorPassVerified">#31af15</color>
+    <color name="colorSuperDarkGrey">#3B3B3B</color>
     <color name="bgcolorInsideApp">#f9f9f9</color>
     <color name="mainColor">#FF6B75</color>
     <color name="fiftyOpacity_mainColor">#50FF6B75</color>

@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nawinc27.mac.blooddonorfrontend.form.Form;
 import com.nawinc27.mac.blooddonorfrontend.history.History;
 import com.nawinc27.mac.blooddonorfrontend.history.HistoryAdapter;
 import com.nawinc27.mac.blooddonorfrontend.loading.CustomLoadingDialog;
@@ -40,6 +41,7 @@ public class HistoryFragment extends Fragment {
     private SessionManager session;
     private static DatabaseReference requestRef;
     private DatabaseReference hospitalRef;
+    private DatabaseReference approveRef;
     private Bundle bundle;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
@@ -59,6 +61,7 @@ public class HistoryFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         session = new SessionManager(getContext());
         customLoadingDialog = new CustomLoadingDialog(getContext());
+        bundle = new Bundle();
 
         if (!session.checkLogin()) {
             Extensions.goTo(getActivity(), new LoginFragment());
@@ -70,6 +73,7 @@ public class HistoryFragment extends Fragment {
         }
 
         fetchRequest();
+        checkFetchApprove();
 
         TextView goto_from_btn = getActivity().findViewById(R.id.goto_from_btn);
         goto_from_btn.setOnClickListener(new View.OnClickListener() {
@@ -187,7 +191,6 @@ public class HistoryFragment extends Fragment {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             try {
-                                    bundle = new Bundle();
                                     bundle.putString("hospitalid", dataSnapshot.child("hospital_id").getValue(String.class));
                                     bundle.putString("hospitalname", dataSnapshot.child("hospital_name").getValue(String.class));
 
@@ -218,7 +221,6 @@ public class HistoryFragment extends Fragment {
                 }
             });
 
-//            dialog.show();
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -258,6 +260,65 @@ public class HistoryFragment extends Fragment {
             requestRef = database.getReference("/donor/form_request/" + session.getUsername() + "/");
             requestRef.child("request").setValue(false);
             Log.i("REQUEST", "SET REQUEST TO FALSE");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public String getFetchHospitalId(){
+        if(getArguments() != null){
+            bundle = getArguments();
+            return bundle.getString("hospitalid");
+        }else {
+            return "null";
+        }
+    }
+
+    public void checkFetchApprove(){
+        if(!getFetchHospitalId().equals("null")){
+            fetchApprove();
+        }
+    }
+
+    public void fetchApprove(){
+        //This func will call showDialog when hospital request form
+        try {
+            approveRef = database.getReference("/officer/form/" + getFetchHospitalId() + "/" + session.getUsername() + "/");
+            approveRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    Form formBuffer = dataSnapshot.child("form").getValue(Form.class);
+                    if(!formBuffer.getApprove().equals("unproved") && !formBuffer.getApprove().equals("proved")){
+                        setApprove();
+                        if(formBuffer.getApprove().equals("accepted")){
+                            try {
+                                Log.i("APPROVE", formBuffer.getApprove() + "");
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }else{
+                            try {
+                                Log.i("APPROVE", formBuffer.getApprove() + "");
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void setApprove(){
+        try {
+            approveRef = database.getReference("/officer/form/" + getFetchHospitalId() + "/" + session.getUsername() + "/");
+            approveRef.child("form").child("approve").setValue("proved");
         } catch (Exception e){
             e.printStackTrace();
         }

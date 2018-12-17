@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,9 +35,13 @@ public class FormFragment extends Fragment {
             , q13, q14, q15, q16, q17, q18, q19, q20, q21, q22
             , q23, q24, q25, q26, q27, q28, q29, q30, q31;
     private EditText ansQ2, q32;
-    private static boolean DEFAULT_FORM_APPROVE = false;
+    private static String DEFAULT_FORM_APPROVE = "unproved";
+    private static String DEFAULT_FORM_QUESTION33 = "";
     private Bundle bundle;
     private ImageView backButton;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
+    private HistoryFragment historyFragment;
 
 
     @Override
@@ -251,20 +257,16 @@ public class FormFragment extends Fragment {
                     q29.isChecked(),
                     q30.isChecked(),
                     q31.isChecked(),
-                    q32.getText().toString() + " ",
+                    q32.getText().toString() + "",
+                    DEFAULT_FORM_QUESTION33,
                     formTimeStamp,
                     DEFAULT_FORM_APPROVE);
             formRef = database.getReference("officer/form/" + bundle.getString("hospitalid") + "/" + session.getUsername() + "/");
-            formRef.push().setValue(formBuffer);
+            formRef.child("form").setValue(formBuffer);
 
             Toast.makeText(getActivity(), "ส่งแบบฟอร์มสำเร็จ", Toast.LENGTH_SHORT).show();
 
-            clearFragmentBackstack();
-
-            getActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.main_view, new HistoryFragment())
-                    .commit();
+            passBundle();
 
         } catch (Exception e){
             e.printStackTrace();
@@ -276,5 +278,18 @@ public class FormFragment extends Fragment {
         for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
             fm.popBackStack();
         }
+    }
+
+    public void passBundle(){
+        clearFragmentBackstack();
+
+        fragmentManager = getActivity().getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+        historyFragment = new HistoryFragment();
+        historyFragment.setArguments(bundle);
+
+        fragmentTransaction.replace(R.id.main_view, historyFragment);
+        fragmentTransaction.commit();
     }
 }

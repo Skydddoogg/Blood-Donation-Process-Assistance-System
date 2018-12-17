@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nawinc27.mac.blooddonorfrontend.history.History;
 import com.nawinc27.mac.blooddonorfrontend.history.HistoryAdapter;
+import com.nawinc27.mac.blooddonorfrontend.loading.CustomLoadingDialog;
 import com.nawinc27.mac.blooddonorfrontend.utility.Extensions;
 import com.nawinc27.mac.blooddonorfrontend.utility.SessionManager;
 import java.sql.Timestamp;
@@ -43,6 +44,7 @@ public class HistoryFragment extends Fragment {
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private FormFragment formFragment;
+    private CustomLoadingDialog customLoadingDialog;
 
     @Nullable
     @Override
@@ -56,10 +58,12 @@ public class HistoryFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         session = new SessionManager(getContext());
+        customLoadingDialog = new CustomLoadingDialog(getContext());
 
         if (!session.checkLogin()) {
             Extensions.goTo(getActivity(), new LoginFragment());
         } else {
+            customLoadingDialog.showDialog();
             showHistory();
             showUserProfile();
             initLogoutBtn();
@@ -120,10 +124,12 @@ public class HistoryFragment extends Fragment {
                     times = getView().findViewById(R.id.main_number_donate);
                     times.setText(""+histories.size());
 
+                    customLoadingDialog.dismissDialog();
                     Log.i("HISTORY", "RETREIVE HISTORY SUCCESS");
                 }
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
+                    customLoadingDialog.dismissDialog();
                     Log.i("HISTORY", "ERROR CANNOT RETREIVE HISTORY FROM FIREBASE");
                 }
             });

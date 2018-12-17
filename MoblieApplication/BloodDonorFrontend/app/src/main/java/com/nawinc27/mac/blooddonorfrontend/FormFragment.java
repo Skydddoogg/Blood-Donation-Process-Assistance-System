@@ -31,6 +31,8 @@ public class FormFragment extends Fragment {
             , q23, q24, q25, q26, q27, q28, q29, q30, q31;
     private EditText ansQ2, q32;
     private static boolean DEFAULT_FORM_APPROVE = false;
+    private Bundle bundle;
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -64,21 +66,9 @@ public class FormFragment extends Fragment {
     }
 
     public void setHospital(final Button button){
-        try {
-            requestRef = database.getReference("/donor/form_request/" + session.getUsername() + "/");
-            requestRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    button.setText(dataSnapshot.child("hospital_name").getValue(String.class));
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.i("FORMFRAGMENT", "CAN'T SET HOSPITAL NAME");
-                }
-            });
-        }catch (Exception e){
-            e.printStackTrace();
+        if(getArguments() != null){
+            bundle = getArguments();
+            button.setText(bundle.getString("hospitalname"));
         }
     }
 
@@ -158,7 +148,7 @@ public class FormFragment extends Fragment {
         return result;
     }
 
-    public void initform(String hospitalId){
+    public void sendForm(){
         try {
             Long timeStamp = System.currentTimeMillis();
             String formTimeStamp  = Long.toString(timeStamp);
@@ -197,7 +187,7 @@ public class FormFragment extends Fragment {
                     q32.getText().toString() + " ",
                     formTimeStamp,
                     DEFAULT_FORM_APPROVE);
-            formRef = database.getReference("officer/form/" + hospitalId + "/" + session.getUsername() + "/");
+            formRef = database.getReference("officer/form/" + bundle.getString("hospitalid") + "/" + session.getUsername() + "/");
             formRef.push().setValue(formBuffer);
 
             Toast.makeText(getActivity(), "ส่งแบบฟอร์มสำเร็จ", Toast.LENGTH_SHORT).show();
@@ -211,22 +201,22 @@ public class FormFragment extends Fragment {
         }
     }
 
-    public void sendForm(){
-        try {
-            requestRef = database.getReference("/donor/form_request/" + session.getUsername() + "/");
-            requestRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    initform(dataSnapshot.child("hospital_id").getValue(String.class));
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.i("FORMFRAGMENT", "CAN'T SET HOSPITAL NAME");
-                }
-            });
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
+//    public void sendForm(){
+//        try {
+//            requestRef = database.getReference("/donor/form_request/" + session.getUsername() + "/");
+//            requestRef.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(DataSnapshot dataSnapshot) {
+//                    initform(dataSnapshot.child("hospital_id").getValue(String.class));
+//                }
+//
+//                @Override
+//                public void onCancelled(DatabaseError databaseError) {
+//                    Log.i("FORMFRAGMENT", "CAN'T SET HOSPITAL NAME");
+//                }
+//            });
+//        } catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
 }

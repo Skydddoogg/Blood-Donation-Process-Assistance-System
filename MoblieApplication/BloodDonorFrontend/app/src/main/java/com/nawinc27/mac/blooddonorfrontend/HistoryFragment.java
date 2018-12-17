@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,11 @@ public class HistoryFragment extends Fragment {
     private TextView times;
     private SessionManager session;
     private static DatabaseReference requestRef;
+    private DatabaseReference hospitalRef;
+    private Bundle bundle;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
+    private FormFragment formFragment;
 
     @Nullable
     @Override
@@ -167,10 +174,35 @@ public class HistoryFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     dialog.cancel();
-                    getActivity().getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.main_view, new FormFragment())
-                            .commit();
+                    hospitalRef = database.getReference("/donor/form_request/" + session.getUsername() + "/");
+                    hospitalRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            try {
+                                if(dataSnapshot.child("request").getValue(boolean.class)){
+                                    setRequest();
+                                    bundle = new Bundle();
+                                    bundle.putString("hospitalid", dataSnapshot.child("hospital_id").getValue(String.class));
+                                    bundle.putString("hospitalname", dataSnapshot.child("hospital_name").getValue(String.class));
+
+                                    fragmentManager = getActivity().getSupportFragmentManager();
+                                    fragmentTransaction = fragmentManager.beginTransaction();
+                                    formFragment = new FormFragment();
+                                    formFragment.setArguments(bundle);
+
+                                    fragmentTransaction.replace(R.id.main_view, formFragment);
+                                    fragmentTransaction.commit();
+                                }
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.i("FORMFRAGMENT", "CAN'T SET HOSPITAL NAME");
+                        }
+                    });
                 }
             });
 
@@ -196,7 +228,7 @@ public class HistoryFragment extends Fragment {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     boolean request = dataSnapshot.child("request").getValue(boolean.class);
                     if(request){
-                        setRequest();
+//                        setRequest();
                         try {
                             showDialog();
                         }catch (Exception e){

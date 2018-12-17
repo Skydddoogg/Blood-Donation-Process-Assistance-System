@@ -169,12 +169,14 @@ public class HistoryFragment extends Fragment {
             final Dialog dialog = new Dialog(getActivity());
             dialog.setContentView(R.layout.dialog_custom);
             dialog.setTitle("FORM");
+            dialog.cancel();
 
             Button accept = dialog.findViewById(R.id.dialog_accept);
             TextView cancel = dialog.findViewById(R.id.dialog_cancel);
 
             accept.setEnabled(true);
             cancel.setEnabled(true);
+            dialog.show();
 
             accept.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -185,8 +187,6 @@ public class HistoryFragment extends Fragment {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             try {
-                                if(dataSnapshot.child("request").getValue(boolean.class)){
-                                    setRequest();
                                     bundle = new Bundle();
                                     bundle.putString("hospitalid", dataSnapshot.child("hospital_id").getValue(String.class));
                                     bundle.putString("hospitalname", dataSnapshot.child("hospital_name").getValue(String.class));
@@ -198,7 +198,6 @@ public class HistoryFragment extends Fragment {
 
                                     fragmentTransaction.replace(R.id.main_view, formFragment);
                                     fragmentTransaction.commit();
-                                }
                             }catch (Exception e){
                                 e.printStackTrace();
                             }
@@ -219,7 +218,7 @@ public class HistoryFragment extends Fragment {
                 }
             });
 
-            dialog.show();
+//            dialog.show();
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -234,7 +233,7 @@ public class HistoryFragment extends Fragment {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     boolean request = dataSnapshot.child("request").getValue(boolean.class);
                     if(request){
-//                        setRequest();
+                        setRequest();
                         try {
                             showDialog();
                         }catch (Exception e){

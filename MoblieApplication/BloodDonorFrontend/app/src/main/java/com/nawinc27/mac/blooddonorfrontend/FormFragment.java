@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.nawinc27.mac.blooddonorfrontend.form.Form;
 import com.nawinc27.mac.blooddonorfrontend.utility.Extensions;
 import com.nawinc27.mac.blooddonorfrontend.utility.SessionManager;
@@ -37,6 +35,7 @@ public class FormFragment extends Fragment {
     private EditText ansQ2, q32;
     private static boolean DEFAULT_FORM_APPROVE = false;
     private Bundle bundle;
+    private ImageView backButton;
 
 
     @Override
@@ -46,6 +45,7 @@ public class FormFragment extends Fragment {
         session = new SessionManager(getContext());
         hospitalName = getView().findViewById(R.id.spinner1);
         submitForm = getView().findViewById(R.id.form_submit);
+        backButton = getView().findViewById(R.id.imageView5);
 
         initQuestion();
         initBackBtn();
@@ -60,6 +60,18 @@ public class FormFragment extends Fragment {
         });
 
         setHospital(hospitalName);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearFragmentBackstack();
+
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.main_view, new HistoryFragment())
+                        .commit();
+            }
+        });
 
 
     }
@@ -247,31 +259,22 @@ public class FormFragment extends Fragment {
 
             Toast.makeText(getActivity(), "ส่งแบบฟอร์มสำเร็จ", Toast.LENGTH_SHORT).show();
 
+            clearFragmentBackstack();
+
             getActivity().getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.main_view, new HistoryFragment())
                     .commit();
+
         } catch (Exception e){
             e.printStackTrace();
         }
     }
 
-//    public void sendForm(){
-//        try {
-//            requestRef = database.getReference("/donor/form_request/" + session.getUsername() + "/");
-//            requestRef.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(DataSnapshot dataSnapshot) {
-//                    initform(dataSnapshot.child("hospital_id").getValue(String.class));
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError databaseError) {
-//                    Log.i("FORMFRAGMENT", "CAN'T SET HOSPITAL NAME");
-//                }
-//            });
-//        } catch (Exception e){
-//            e.printStackTrace();
-//        }
-//    }
+    public void clearFragmentBackstack(){
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
+    }
 }

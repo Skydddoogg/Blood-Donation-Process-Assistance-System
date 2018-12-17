@@ -8,6 +8,7 @@ import hashlib
 from firebase import firebase
 from flask_cors import CORS
 from datetime import datetime
+import ast
 
 from models.Officer import Officer
 from myconfig import database_url, donation_key, donor_profile_key, officer_key, form_key, form_request_checker
@@ -20,13 +21,34 @@ login_manager.init_app(app)
 login_manager.login_view = "login"
 firebase = firebase.FirebaseApplication(database_url, None)
 
-@app.route('/confirmation/<request_id>', methods=['GET', 'POST'])
-def confirmation(request_id):
+@app.route('/approvement', methods=['GET', 'POST'])
+def approvement():
+    if request.method == 'POST':
+        form = ast.literal_eval(request.args.get('request_form'))
+        if request.form['approvement'] == "accept":
+            form["approve"] = True
+        else:
+            form["approve"] = True
+        firebase.put(form_key + '/' + session['id'] + '/' + request.args.get('id_number'), '-LTwAn-u6rGW7-CpFssp', form)
+        return redirect('/requestInformation')
 
-    # Get specified request
-    confirmation = firebase.get(form_key + '/' + request_id, None)
+@app.route('/confirmation/<request_form>', methods=['GET', 'POST'])
+def confirmation(request_form):
 
-    return render_template('confirmation.html', confirmation=confirmation)
+    request_form = ast.literal_eval(request_form)
+    donor_id = request.args.get('donor_id')
+
+    form_for_show = {}
+
+    for field in request_form:
+        if request_form[field] == True:
+            form_for_show[field] = "ใช่"
+        elif request_form[field] == False:
+            form_for_show[field] = "ไม่ใช่"
+        else:
+            form_for_show[field] = request_form[field]
+
+    return render_template('confirmation.html', form_for_show=form_for_show, donor_id=donor_id, raw_form=request_form)
 
 @app.route('/requestInformation', methods=['GET', 'POST'])
 def requestInformation():
@@ -36,9 +58,16 @@ def requestInformation():
     donation_requests = firebase.get(form_key + '/' + hospital, None)
 
     # Get donors
-    donors = {}
-    for donor in donation_requests:
-        donors[donor] = firebase.get(donor_profile_key + '/' + donor, None)
+    if donation_requests is not None:
+        donors = {}
+        for donor in donation_requests:
+            for request in donation_requests[donor]:
+                if donation_requests[donor][request]["approve"] == False:
+                    donors[donor] = firebase.get(donor_profile_key + '/' + donor, None)
+                else:
+                    pass
+    else:
+        donors = None
 
     return render_template('request_information.html', donation_requests=donation_requests, donors=donors)
 
@@ -91,7 +120,7 @@ def recordBloodDonation(id_number):
 def sendPreDonationForm(id_number):
 
     # Switch request status for specified donor (False -> True)
-    firebase.put(form_request_checker, id_number, {"request": True})
+    firebase.put(form_request_checker, id_number, {"hospital_id": session["id"], "hospital_name": session["username"], "request": True})
 
     return redirect('/donorProfile/' + id_number)
 

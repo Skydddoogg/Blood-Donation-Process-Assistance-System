@@ -35,6 +35,7 @@ def requestInformation():
     hospital = session['id']
     donation_requests = firebase.get(form_key + '/' + hospital, None)
 
+    # Get donors
     donors = {}
     for donor in donation_requests:
         donors[donor] = firebase.get(donor_profile_key + '/' + donor, None)

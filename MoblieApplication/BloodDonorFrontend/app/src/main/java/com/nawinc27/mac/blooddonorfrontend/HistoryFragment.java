@@ -1,5 +1,7 @@
 package com.nawinc27.mac.blooddonorfrontend;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -37,6 +38,8 @@ public class HistoryFragment extends Fragment {
     private TextView name;
     private TextView times;
     private SessionManager session;
+    private static DatabaseReference requestRef;
+    private static String TEST_USER_ID = "1234567890111";
 
     @Nullable
     @Override
@@ -58,6 +61,8 @@ public class HistoryFragment extends Fragment {
             showUserProfile();
             initLogoutBtn();
         }
+
+        fetchRequest();
 
         TextView goto_from_btn = getActivity().findViewById(R.id.goto_from_btn);
         goto_from_btn.setOnClickListener(new View.OnClickListener() {
@@ -135,5 +140,69 @@ public class HistoryFragment extends Fragment {
                 Extensions.goTo(getActivity(), new LoginFragment());
             }
         });
+    }
+
+    public void showDialog(){
+        //This func will show dialog when request = true
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.dialog_custom);
+        dialog.setTitle("FORM");
+
+        Button accept = dialog.findViewById(R.id.dialog_accept);
+        TextView cancel = dialog.findViewById(R.id.dialog_cancel);
+
+        accept.setEnabled(true);
+        cancel.setEnabled(true);
+
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.main_view, new FormFragment())
+                        .commit();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
+
+        dialog.show();
+    }
+
+    public void fetchRequest(){
+        //This func will call showDialog when hospital request form
+        requestRef = database.getReference("/donor/form_request/" + TEST_USER_ID + "/");
+        requestRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                boolean request = dataSnapshot.child("request").getValue(boolean.class);
+                if(request){
+                    setRequest();
+                    try {
+                        showDialog();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+                Log.i("REQUEST", "REQUEST : " + request);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.i("REQUEST", "ERROR CAN'T GET REQUEST");
+            }
+        });
+    }
+
+    public void setRequest(){
+        requestRef = database.getReference("/donor/form_request/" + TEST_USER_ID + "/");
+        requestRef.child("request").setValue(false);
+        Log.i("REQUEST", "SET REQUEST TO FALSE");
     }
 }

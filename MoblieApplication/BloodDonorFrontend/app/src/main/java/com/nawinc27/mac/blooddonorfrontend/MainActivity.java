@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.main_view, new FormSender())
+                    .replace(R.id.main_view, new LoginFragment())
                     .addToBackStack(null)
                     .commit();
         }

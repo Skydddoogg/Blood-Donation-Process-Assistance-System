@@ -34,10 +34,6 @@ public class FormSender extends Fragment {
 
         button = getView().findViewById(R.id.form_test_button);
 
-        //Fetch Form's Request
-        //If hospital request to send form for donate blood
-        FormRequest.fetchRequest(getActivity());
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +48,7 @@ public class FormSender extends Fragment {
         formBuffer = new Form(false,
                 4,
                 false,
-                4,
+                false,
                 false,
                 false,
                 false,

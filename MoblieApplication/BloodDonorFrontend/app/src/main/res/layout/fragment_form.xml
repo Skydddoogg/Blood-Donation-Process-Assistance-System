@@ -28,7 +28,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="16dp"
-        android:text="กรุณาเลือกโรงพยาบาล"
+        android:text="แบบฟอร์มจากโรงพยาบาล"
         android:textColor="@color/colorDarkGrey"
         android:textSize="14sp"
         app:fontFamily="@font/prompt_light"
@@ -49,29 +49,19 @@
         app:layout_constraintStart_toEndOf="@+id/imageView5"
         app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
-    <Spinner
+    <Button
         android:id="@+id/spinner1"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
+        android:text="โรงพยาบาล"
         android:background="@drawable/solid_corner"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/spinner1"
-        app:layout_constraintEnd_toEndOf="@+id/spinner1"
-        app:layout_constraintTop_toTopOf="@+id/spinner1"
-        app:srcCompat="@drawable/icon_dropdown" />
 
 
     <ScrollView
@@ -85,8 +75,10 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner1">
+        app:layout_constraintTop_toBottomOf="@+id/spinner1"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -135,7 +127,11 @@
                 app:fontFamily="@font/prompt_light" />
 
             <EditText
+                android:layout_marginLeft="30dp"
                 android:id="@+id/ans_q2"
+                android:hint="เช่น 6 เดือน"
+                android:textSize="12dp"
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

@@ -4,7 +4,7 @@ public class Form {
     private boolean question1;
     private int question2;
     private boolean question3;
-    private int question4;
+    private boolean question4;
     private boolean question5;
     private boolean question6;
     private boolean question7;
@@ -36,7 +36,7 @@ public class Form {
     private String timeStamp;
     private boolean approve;
 
-    public Form(boolean question1, int question2, boolean question3, int question4, boolean question5, boolean question6, boolean question7, boolean question8, boolean question9, boolean question10, boolean question11, boolean question12, boolean question13, boolean question14, boolean question15, boolean question16, boolean question17, boolean question18, boolean question19, boolean question20, boolean question21, boolean question22, boolean question23, boolean question24, boolean question25, boolean question26, boolean question27, boolean question28, boolean question29, boolean question30, boolean question31, String question32, String timeStamp, boolean approve) {
+    public Form(boolean question1, int question2, boolean question3, boolean question4, boolean question5, boolean question6, boolean question7, boolean question8, boolean question9, boolean question10, boolean question11, boolean question12, boolean question13, boolean question14, boolean question15, boolean question16, boolean question17, boolean question18, boolean question19, boolean question20, boolean question21, boolean question22, boolean question23, boolean question24, boolean question25, boolean question26, boolean question27, boolean question28, boolean question29, boolean question30, boolean question31, String question32, String timeStamp, boolean approve) {
         this.question1 = question1;
         this.question2 = question2;
         this.question3 = question3;
@@ -97,11 +97,11 @@ public class Form {
         this.question3 = question3;
     }
 
-    public int getQuestion4() {
+    public boolean isQuestion4() {
         return question4;
     }
 
-    public void setQuestion4(int question4) {
+    public void setQuestion4(boolean question4) {
         this.question4 = question4;
     }
 

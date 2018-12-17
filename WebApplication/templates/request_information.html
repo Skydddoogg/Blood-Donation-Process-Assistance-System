@@ -12,7 +12,6 @@
                     <thead>
                         <tr>
                             <!-- <th scope="col">ID</th> -->
-                            <th scope="col">ชื่อ - สกุล</th>
                             <th scope="col">เลขบัตรประชาชน</th>
                             <th scope="col"></th>
                         </tr>
@@ -21,9 +20,8 @@
                         {% if donors is not none %}
                             {% for donor in donors  %}
                                 <tr>
-                                    <td>{{ donors[donor]['firstname'][0] }} {{ donors[donor]['lastname'][0] }}</td>
                                     <td>{{ donor }}</td>
-                                    <td><a href="{{ url_for('confirmation', request_form=donation_requests[donor]['-LTwAn-u6rGW7-CpFssp'], donor_id=donor, _external=True) }}"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
+                                    <td><a href="{{ url_for('confirmation', request_form=donation_requests[donor]['form'], donor_id=donor, _external=True) }}"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
                                 </tr>
                             {% endfor %}
                         {% endif %}

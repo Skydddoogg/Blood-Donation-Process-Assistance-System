@@ -29,7 +29,7 @@ def approvement():
             form["approve"] = True
         else:
             form["approve"] = True
-        firebase.put(form_key + '/' + session['id'] + '/' + request.args.get('id_number'), '-LTwAn-u6rGW7-CpFssp', form)
+        firebase.put(form_key + '/' + session['id'] + '/' + request.args.get('id_number'), 'form', form)
         return redirect('/requestInformation')
 
 @app.route('/confirmation/<request_form>', methods=['GET', 'POST'])
@@ -59,11 +59,11 @@ def requestInformation():
 
     # Get donors
     if donation_requests is not None:
-        donors = {}
+        donors = []
         for donor in donation_requests:
             for request in donation_requests[donor]:
                 if donation_requests[donor][request]["approve"] == False:
-                    donors[donor] = firebase.get(donor_profile_key + '/' + donor, None)
+                    donors.append(donor)
                 else:
                     pass
     else:

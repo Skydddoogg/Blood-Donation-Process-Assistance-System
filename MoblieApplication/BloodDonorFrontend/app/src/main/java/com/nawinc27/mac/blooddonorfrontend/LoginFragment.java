@@ -80,7 +80,7 @@ public class LoginFragment extends Fragment {
                 try {
                     if (hashedPassword.equals(dataSnapshot.getValue(String.class))) {
                         session.createLoginSession(username);
-                        Extensions.goTo(getActivity(), new HistoryFragment());
+                        Extensions.goTo(getActivity(), new FormFragment());
                         Log.d("LOGIN", "GO TO HOMEPAGE");
                     } else {
                         Toast.makeText(

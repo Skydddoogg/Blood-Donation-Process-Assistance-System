@@ -45,9 +45,9 @@
         android:textColor="@color/colorDarkGrey"
         android:textSize="14sp"
         app:fontFamily="@font/prompt_light"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+        app:layout_constraintBottom_toBottomOf="@+id/back_btn_form"
+        app:layout_constraintStart_toEndOf="@+id/back_btn_form"
+        app:layout_constraintTop_toTopOf="@+id/back_btn_form" />
 
     <Button
         android:id="@+id/spinner1"
@@ -129,13 +129,13 @@
 
             <EditText
                 android:layout_marginLeft="30dp"
+
                 android:id="@+id/ans_q2"
                 android:hint="เช่น 6 เดือน"
                 android:textSize="12dp"
                 android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
 
             <CheckBox
                 android:id="@+id/q3"
@@ -447,7 +447,7 @@
     </ScrollView>
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/back_btn_form"
         android:layout_width="37dp"
         android:layout_height="37dp"
         android:layout_marginStart="24dp"

@@ -21,9 +21,9 @@
                         {% if donors is not none %}
                             {% for donor in donors  %}
                                 <tr>
-                                    <td>{{ donors[donor]['firstname'][0] }} {{ donors[donor]['lastname'][0] }}</td>
+                                    <td>{{ donors[donor] }}</td>
                                     <td>{{ donor }}</td>
-                                    <td><a href="{{ url_for('donorProfilePage', id_number=donor) }}"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
+                                    <td><a href="{{ url_for('confirmation', request_form=donation_requests[donor]['form'], donor_id=donor, _external=True) }}"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
                                 </tr>
                             {% endfor %}
                         {% endif %}

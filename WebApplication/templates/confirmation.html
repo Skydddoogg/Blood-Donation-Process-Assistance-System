@@ -15,28 +15,24 @@
             <div class="confirmation_item_bottom">
                 <div class="confirmation_item_bottom_item">
                     <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
-                    <div class="confirmation_item_bottom_value">ใช่</div>
+                    <div class="confirmation_item_bottom_value">{{ form_for_show['question1'] }}</div>
                 </div>
 
                 <div class="confirmation_item_bottom_item">
-                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
-                    <div class="confirmation_item_bottom_value">ใช่</div>
+                    <div class="confirmation_item_bottom_key">คลอดบุตร ในอีกระยะเวลา (เดือน)</div>
+                    <div class="confirmation_item_bottom_value">{{ form_for_show['question2'] }}</div>
                 </div>
 
                 <div class="confirmation_item_bottom_item">
-                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
-                    <div class="confirmation_item_bottom_value">ใช่</div>
+                    <div class="confirmation_item_bottom_key">อยู่ในระยะให้นมบุตร</div>
+                    <div class="confirmation_item_bottom_value">{{ form_for_show['question3'] }}</div>
                 </div>
 
                 <div class="confirmation_item_bottom_item">
-                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
-                    <div class="confirmation_item_bottom_value">ใช่</div>
+                    <div class="confirmation_item_bottom_key">คลอดบุตร หรือแท้งบุตร ภายใน 6 เดือนที่ผ่านมา</div>
+                    <div class="confirmation_item_bottom_value">{{ form_for_show['question4'] }}</div>
                 </div>
 
-                <div class="confirmation_item_bottom_item">
-                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
-                    <div class="confirmation_item_bottom_value">ใช่</div>
-                </div>
             </div>
         </div>
         <!-- คำถามสำหรับผู้บริจาคสุภาพบุรุษและสุภาพสตรี -->
@@ -46,19 +42,23 @@
             </div>
             <div class="confirmation_item_bottom">
                 <div class="confirmation_item_bottom_item">
-                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
-                    <div class="confirmation_item_bottom_value">ใช่</div>
+                    <div class="confirmation_item_bottom_key">ท่านมีเพศสัมพันธ์กับผู้อื่นที่ไม่ใช่คู่ของท่าน</div>
+                    <div class="confirmation_item_bottom_value">{{ form_for_show['question5'] }}</div>
                 </div>
 
                 <div class="confirmation_item_bottom_item">
-                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
-                    <div class="confirmation_item_bottom_value">ใช่</div>
+                    <div class="confirmation_item_bottom_key">ท่านมีเพศสัมพันธ์กับเพศเดียวกัน (เฉพาะเพศชาย)</div>
+                    <div class="confirmation_item_bottom_value">{{ form_for_show['question6'] }}</div>
                 </div>
 
 
                 <div class="confirmation_item_bottom_item">
-                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
-                    <div class="confirmation_item_bottom_value">ใช่</div>
+                    <div class="confirmation_item_bottom_key">คู่ของท่านมีเพศสัมพันธ์กับผู้อื่น</div>
+                    <div class="confirmation_item_bottom_value">{{ form_for_show['question7'] }}</div>
+                </div>
+                <div class="confirmation_item_bottom_item">
+                    <div class="confirmation_item_bottom_key">คู่ของท่านมีเพศสัมพันธ์กับเพศเดียวกัน (เฉพาะเพศหญิงที่ไม่มีคู่เป็นชาย)</div>
+                    <div class="confirmation_item_bottom_value">{{ form_for_show['question8'] }}</div>
                 </div>
             </div>
         </div>
@@ -70,19 +70,28 @@
             </div>
             <div class="confirmation_item_bottom">
                 <div class="confirmation_item_bottom_item">
-                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
-                    <div class="confirmation_item_bottom_value">ใช่</div>
+                    <div class="confirmation_item_bottom_key">ท้องเสีย ท้องร่วง ภายใน 7 วันที่ผ่านมา</div>
+                    <div class="confirmation_item_bottom_value">{{ form_for_show['question9'] }}</div>
                 </div>
 
                 <div class="confirmation_item_bottom_item">
-                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
-                    <div class="confirmation_item_bottom_value">ใช่</div>
+                    <div class="confirmation_item_bottom_key">น้ำหนักลดอย่างรวดเร็วในระยะ 3 เดือนที่ผ่านมาโดยไม่ทราบสาเหตุ</div>
+                    <div class="confirmation_item_bottom_value">{{ form_for_show['question10'] }}</div>
                 </div>
 
 
                 <div class="confirmation_item_bottom_item">
-                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
-                    <div class="confirmation_item_bottom_value">ใช่</div>
+                    <div class="confirmation_item_bottom_key">ถอนฟัน อุดฟัน ขูดหินปูนและรักษารากฟันภายใน 3 วันที่ผ่านมา</div>
+                    <div class="confirmation_item_bottom_value">{{ form_for_show['question11'] }}</div>
+                </div>
+                <div class="confirmation_item_bottom_item">
+                    <div class="confirmation_item_bottom_key">ได้รับการผ่าตัดเล็ก ภายใน 7 วัน ที่ผ่านมา</div>
+                    <div class="confirmation_item_bottom_value">{{ form_for_show['question12'] }}</div>
+                </div>
+
+                <div class="confirmation_item_bottom_item">
+                    <div class="confirmation_item_bottom_key">ได้รับการผ่าตัดใหญ่ ภายใน 6 เดือน ที่ผ่านมา</div>
+                    <div class="confirmation_item_bottom_value">{{ form_for_show['question13'] }}</div>
                 </div>
             </div>
         </div>
@@ -93,6 +102,26 @@
                 <h1>หมวดที่ 2.2</h1>
             </div>
             <div class="confirmation_item_bottom">
+                <div class="confirmation_item_bottom_item">
+                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
+                    <div class="confirmation_item_bottom_value">ใช่</div>
+                </div>
+
+                <div class="confirmation_item_bottom_item">
+                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
+                    <div class="confirmation_item_bottom_value">ใช่</div>
+                </div>
+
+                <div class="confirmation_item_bottom_item">
+                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
+                    <div class="confirmation_item_bottom_value">ใช่</div>
+                </div>
+
+                <div class="confirmation_item_bottom_item">
+                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
+                    <div class="confirmation_item_bottom_value">ใช่</div>
+                </div>
+
                 <div class="confirmation_item_bottom_item">
                     <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
                     <div class="confirmation_item_bottom_value">ใช่</div>
@@ -128,6 +157,16 @@
                     <div class="confirmation_item_bottom_value">ใช่</div>
                 </div>
 
+                <div class="confirmation_item_bottom_item">
+                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
+                    <div class="confirmation_item_bottom_value">ใช่</div>
+                </div>
+
+                <div class="confirmation_item_bottom_item">
+                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
+                    <div class="confirmation_item_bottom_value">ใช่</div>
+                </div>
+
 
                 <div class="confirmation_item_bottom_item">
                     <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
@@ -153,6 +192,26 @@
                     <div class="confirmation_item_bottom_value">ใช่</div>
                 </div>
 
+                <div class="confirmation_item_bottom_item">
+                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
+                    <div class="confirmation_item_bottom_value">ใช่</div>
+                </div>
+
+                <div class="confirmation_item_bottom_item">
+                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
+                    <div class="confirmation_item_bottom_value">ใช่</div>
+                </div>
+
+                <div class="confirmation_item_bottom_item">
+                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
+                    <div class="confirmation_item_bottom_value">ใช่</div>
+                </div>
+
+                <div class="confirmation_item_bottom_item">
+                    <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
+                    <div class="confirmation_item_bottom_value">ใช่</div>
+                </div>
+
 
                 <div class="confirmation_item_bottom_item">
                     <div class="confirmation_item_bottom_key">อยู่ในระหว่างตั้งครรภ์</div>
@@ -162,11 +221,12 @@
         </div>
 
         <div class="line"></div>
-
-        <div class="confirmation_button buttonSignup">
-            <div class="noneActiveButton">ยกเลิก</div>
-            <div class="activeButton popupButton">ยืนยัน</div>
-        </div>
+        <form action="{{ url_for('approvement', id_number=donor_id, request_form=raw_form ,_external=True) }}" method="post">
+            <div class="confirmation_button buttonSignup">
+                <button class="noneActiveButton" style="margin:auto;" type="submit" name="approvement" value="reject"><div>ยกเลิก</div></button>
+                <div class="activeButton popupButton">ยืนยัน</div>
+            </div>
+        </form>
 
 
     </div>
@@ -177,17 +237,17 @@
 
 <div style="display:flex; justify-content: center;">
     <div class="addProfilePopup">
-        <form action="{{ url_for('recordBloodDonation', id_number=id_number) }}" method="post">
+        <form action="{{ url_for('approvement', id_number=donor_id, request_form=raw_form, _external=True) }}" method="post">
             <div class="subtitle" style="margin-bottom:15px;">
                 <h3>สาเหตุที่อนุญาตให้บริจาคเป็นกรณีพิเศษ</h3>
             </div>
             <div class="inputSignup">
                 <div>
-                    <input required step="1" type="text" placeholder="ex. อนุญาติเพราะขนไข้แข็งแรงดี" name="checker">
+                    <input step="1" type="text" placeholder="ex. อนุญาติเพราะขนไข้แข็งแรงดี" name="special_case_message">
                 </div>
             </div>
             <div class="buttonSignup" style="text-align:center;">
-                <button class="activeButton saveForm closeOverlay" style="margin:auto;" type="submit">ยืนยัน</button>
+                <button class="activeButton saveForm closeOverlay" style="margin:auto;" type="submit" name="approvement" value="accept">ยืนยัน</button>
             </div>
         </form>
     </div>

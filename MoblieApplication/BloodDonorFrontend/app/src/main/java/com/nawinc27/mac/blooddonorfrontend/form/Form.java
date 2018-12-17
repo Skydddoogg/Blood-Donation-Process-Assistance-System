@@ -33,10 +33,15 @@ public class Form {
     private boolean question30;
     private boolean question31;
     private String question32;
+    private String question33;
     private String timeStamp;
-    private boolean approve;
+    private String approve;
 
-    public Form(boolean question1, int question2, boolean question3, boolean question4, boolean question5, boolean question6, boolean question7, boolean question8, boolean question9, boolean question10, boolean question11, boolean question12, boolean question13, boolean question14, boolean question15, boolean question16, boolean question17, boolean question18, boolean question19, boolean question20, boolean question21, boolean question22, boolean question23, boolean question24, boolean question25, boolean question26, boolean question27, boolean question28, boolean question29, boolean question30, boolean question31, String question32, String timeStamp, boolean approve) {
+    public Form(){
+
+    }
+
+    public Form(boolean question1, int question2, boolean question3, boolean question4, boolean question5, boolean question6, boolean question7, boolean question8, boolean question9, boolean question10, boolean question11, boolean question12, boolean question13, boolean question14, boolean question15, boolean question16, boolean question17, boolean question18, boolean question19, boolean question20, boolean question21, boolean question22, boolean question23, boolean question24, boolean question25, boolean question26, boolean question27, boolean question28, boolean question29, boolean question30, boolean question31, String question32, String question33, String timeStamp, String approve) {
         this.question1 = question1;
         this.question2 = question2;
         this.question3 = question3;
@@ -69,6 +74,7 @@ public class Form {
         this.question30 = question30;
         this.question31 = question31;
         this.question32 = question32;
+        this.question33 = question33;
         this.timeStamp = timeStamp;
         this.approve = approve;
     }
@@ -329,19 +335,28 @@ public class Form {
         this.question32 = question32;
     }
 
-    public String getTimeStamp(){
+    public String getQuestion33() {
+        return question33;
+    }
+
+    public void setQuestion33(String question33) {
+        this.question33 = question33;
+    }
+
+    public String getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(String timeStamp){
+    public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
     }
 
-    public boolean isApprove() {
+    public String getApprove() {
         return approve;
     }
 
-    public void setApprove(boolean approve) {
+    public void setApprove(String approve) {
         this.approve = approve;
     }
 }
+

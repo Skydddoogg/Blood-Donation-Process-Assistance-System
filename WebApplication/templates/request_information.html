@@ -1,0 +1,46 @@
+{% include 'header.html' %}
+
+<div class="container pages" page="confirmation">
+    <div class="title" style="margin-bottom:0px;">
+        <h1>คำร้องขอเข้ารับบริจาคเลือด</h1>
+    </div>
+
+    <div class="request_information_container">
+        <div class="row">
+            <div class="userList">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <!-- <th scope="col">ID</th> -->
+                            <th scope="col">ชื่อ - สกุล</th>
+                            <th scope="col">เลขบัตรประชาชน</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if donors is not none %}
+                            {% for donor in donors  %}
+                                <tr>
+                                    <td>{{ donors[donor]['firstname'][0] }} {{ donors[donor]['lastname'][0] }}</td>
+                                    <td>{{ donor }}</td>
+                                    <td><a href="{{ url_for('donorProfilePage', id_number=donor) }}"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+
+                <div class="noneResult" style="display: none;">
+                    <h1>กรุณาค้นหาข้อมูล</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+<script src="../static/js/script_confirmation.js"></script>
+
+</html>

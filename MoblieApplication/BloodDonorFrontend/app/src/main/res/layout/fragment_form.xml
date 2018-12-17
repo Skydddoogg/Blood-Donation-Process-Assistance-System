@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="80dp"
+        android:text="แบบประเมินสุขภาพ"
+        android:textColor="@color/colorAccent"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:fontFamily="@font/prompt_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:text="กรุณาเลือกโรงพยาบาล"
+        android:textColor="@color/colorDarkGrey"
+        android:textSize="14sp"
+        app:fontFamily="@font/prompt_light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="ยกเลิกแบบฟอร์ม"
+        android:textColor="@color/colorDarkGrey"
+        android:textSize="14sp"
+        app:fontFamily="@font/prompt_light"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/solid_corner"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner1"
+        app:layout_constraintEnd_toEndOf="@+id/spinner1"
+        app:layout_constraintTop_toTopOf="@+id/spinner1"
+        app:srcCompat="@drawable/icon_dropdown" />
+
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner1">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เป็นใช่กรุณาติ๊กถูก"
+                android:textColor="@color/colorDarkGrey"
+                android:textSize="9sp"
+                app:fontFamily="@font/prompt_medium" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="สำหรับสุภาพสตรี"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                app:fontFamily="@font/prompt_medium" />
+
+            <CheckBox
+                android:id="@+id/q1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q1"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q2"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <EditText
+                android:id="@+id/ans_q2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <CheckBox
+                android:id="@+id/q3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q3"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q4"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="สำหรับสุภาพสตรีและสุภาพบุรุษ"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                app:fontFamily="@font/prompt_medium" />
+
+            <CheckBox
+                android:id="@+id/q5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q5"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q6"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q7"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q8"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q9"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q10"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q11"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q12"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q13"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q14"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q15"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q16"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q17"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q18"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q9"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q20"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q21"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q22"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q23"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q24"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q25"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q26"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q27"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q28"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q29"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q30"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q31"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+
+            <CheckBox
+                android:id="@+id/q32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingBottom="5dp"
+                android:text="@string/q32"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                app:fontFamily="@font/prompt_light" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_icon" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:fontFamily="@font/prompt_light"
+        android:textColor="#fff"
+        android:text="ส่งแบบฟอร์ม"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>
+
+

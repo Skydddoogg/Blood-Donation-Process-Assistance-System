@@ -7,46 +7,6 @@
     android:padding="8dp"
     android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
-
-        android:id="@+id/constraintLayout"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginStart="4dp"
-        android:background="@drawable/radius_border_items"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/history_count"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="1"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            app:fontFamily="@font/prompt_light"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="ครั้งที่"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            app:fontFamily="@font/prompt_light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
-
     <TextView
         android:id="@+id/history_location"
         android:layout_width="wrap_content"
@@ -61,15 +21,16 @@
     <TextView
         android:id="@+id/history_time"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:text="วันที่ : 16 มกราคม 2561"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorAccent"
         android:textSize="18sp"
         app:fontFamily="@font/prompt_medium"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/history_hospital"

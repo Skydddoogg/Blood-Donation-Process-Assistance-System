@@ -12,6 +12,7 @@
                     <thead>
                         <tr>
                             <!-- <th scope="col">ID</th> -->
+                            <th scope="col">ชื่อ - สกุล</th>
                             <th scope="col">เลขบัตรประชาชน</th>
                             <th scope="col"></th>
                         </tr>
@@ -20,6 +21,7 @@
                         {% if donors is not none %}
                             {% for donor in donors  %}
                                 <tr>
+                                    <td>{{ donors[donor] }}</td>
                                     <td>{{ donor }}</td>
                                     <td><a href="{{ url_for('confirmation', request_form=donation_requests[donor]['form'], donor_id=donor, _external=True) }}"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
                                 </tr>

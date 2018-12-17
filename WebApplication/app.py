@@ -26,9 +26,13 @@ def approvement():
     if request.method == 'POST':
         form = ast.literal_eval(request.args.get('request_form'))
         if request.form['approvement'] == "accept":
-            form["approve"] = True
+            special_case_message = request.form["special_case_message"]
+            form["question33"] = special_case_message
+            form["approve"] = "accepted"
         else:
-            form["approve"] = True
+            special_case_message = ""
+            form["question33"] = special_case_message
+            form["approve"] = "rejected"
         firebase.put(form_key + '/' + session['id'] + '/' + request.args.get('id_number'), 'form', form)
         return redirect('/requestInformation')
 
@@ -56,14 +60,15 @@ def requestInformation():
     # Get all donation requests and their donors
     hospital = session['id']
     donation_requests = firebase.get(form_key + '/' + hospital, None)
+    all_donors = firebase.get(donor_profile_key, None)
 
     # Get donors
     if donation_requests is not None:
-        donors = []
+        donors = {}
         for donor in donation_requests:
             for request in donation_requests[donor]:
-                if donation_requests[donor][request]["approve"] == False:
-                    donors.append(donor)
+                if donation_requests[donor][request]["approve"] == "unproved":
+                    donors[donor] = all_donors[donor]["firstname"][0] + " " + all_donors[donor]["lastname"][0]
                 else:
                     pass
     else:

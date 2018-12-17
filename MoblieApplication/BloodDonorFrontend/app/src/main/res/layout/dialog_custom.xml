@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    >
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dialog_icon" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/prompt_medium"
+        android:text="ได้รับคำเชิญประเมิณร่างกาย"
+        android:textColor="#a22f2f"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:fontFamily="@font/prompt_medium"
+        android:text="กดตกลงเพื่อเข้าสู่หน้าแบบฟอร์มการประเมิณ"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+        <TextView
+            android:id="@+id/dialog_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="ยกเลิก"
+            android:fontFamily="@font/prompt_medium"
+            tools:layout_editor_absoluteX="113dp"
+            tools:layout_editor_absoluteY="213dp" />
+
+        <Button
+            android:id="@+id/dialog_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_button"
+            android:text="ตกลง"
+            android:textColor="#fff"
+            android:fontFamily="@font/prompt_medium"
+            tools:layout_editor_absoluteX="222dp"
+            tools:layout_editor_absoluteY="204dp" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

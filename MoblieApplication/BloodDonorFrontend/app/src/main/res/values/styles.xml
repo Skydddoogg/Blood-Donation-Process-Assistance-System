@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CustomLoadingDialog" parent="android:Theme.DeviceDefault.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="DialogTitleText">" "</item>
+        <item name="DialogSpotColor">@color/colorAccent</item>
+        <item name="DialogSpotCount">5</item>
+    </style>
+
 </resources>

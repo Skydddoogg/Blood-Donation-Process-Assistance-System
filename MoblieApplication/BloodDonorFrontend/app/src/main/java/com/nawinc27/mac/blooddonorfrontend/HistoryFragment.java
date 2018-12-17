@@ -1,6 +1,5 @@
 package com.nawinc27.mac.blooddonorfrontend;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +22,6 @@ import com.nawinc27.mac.blooddonorfrontend.history.History;
 import com.nawinc27.mac.blooddonorfrontend.history.HistoryAdapter;
 import com.nawinc27.mac.blooddonorfrontend.utility.Extensions;
 import com.nawinc27.mac.blooddonorfrontend.utility.SessionManager;
-
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,7 +36,6 @@ public class HistoryFragment extends Fragment {
     private TextView times;
     private SessionManager session;
     private static DatabaseReference requestRef;
-    private static String TEST_USER_ID = "1234567890111";
 
     @Nullable
     @Override
@@ -75,50 +71,58 @@ public class HistoryFragment extends Fragment {
 
     public void showUserProfile(){
         //This function use to show User profile by setText in fragment_history
-        name = getView().findViewById(R.id.main_name);
-        myRef = database.getReference("/donor/profile/" + session.getUsername());
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String nameStr = dataSnapshot.child("firstname").child("0").getValue(String.class)
-                        + " " + dataSnapshot.child("lastname").child("0").getValue(String.class);
-                name.setText(nameStr);
-                Log.i("HISTORY", "RETREIVE USER PROFILE SUCCESS");
-            }
+        try {
+            name = getView().findViewById(R.id.main_name);
+            myRef = database.getReference("/donor/profile/" + session.getUsername());
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String nameStr = dataSnapshot.child("firstname").child("0").getValue(String.class)
+                            + " " + dataSnapshot.child("lastname").child("0").getValue(String.class);
+                    name.setText(nameStr);
+                    Log.i("HISTORY", "RETREIVE USER PROFILE SUCCESS");
+                }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.i("HISTORY", "ERROR CAN'T RETREIVE USER PROFILE FROM FIREBASE");
-            }
-        });
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.i("HISTORY", "ERROR CAN'T RETREIVE USER PROFILE FROM FIREBASE");
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void showHistory(){
         //This function use to show History that get from firebase and show on LiseView
-        myRef = database.getReference("/donor/blood_donation/" + session.getUsername());
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ListView historyList = getView().findViewById(R.id.main_history_donor);
-                final HistoryAdapter historyAdapter = new HistoryAdapter(getActivity(),
-                        R.layout.list_item_history, histories);
-                historyList.setAdapter(historyAdapter);
-                histories.clear();
-                for (DataSnapshot child : dataSnapshot.getChildren()){
-                    histories.add(child.getValue(History.class));
-                }
-                Log.i("TESTTTT " , histories.size()+"");
-                Collections.reverse(histories);
-                times = getView().findViewById(R.id.main_number_donate);
-                times.setText(""+histories.size());
+        try {
+            myRef = database.getReference("/donor/blood_donation/" + session.getUsername());
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    ListView historyList = getView().findViewById(R.id.main_history_donor);
+                    final HistoryAdapter historyAdapter = new HistoryAdapter(getActivity(),
+                            R.layout.list_item_history, histories);
+                    historyList.setAdapter(historyAdapter);
+                    histories.clear();
+                    for (DataSnapshot child : dataSnapshot.getChildren()){
+                        histories.add(child.getValue(History.class));
+                    }
+                    Log.i("TESTTTT " , histories.size()+"");
+                    Collections.reverse(histories);
+                    times = getView().findViewById(R.id.main_number_donate);
+                    times.setText(""+histories.size());
 
-                Log.i("HISTORY", "RETREIVE HISTORY SUCCESS");
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.i("HISTORY", "ERROR CANNOT RETREIVE HISTORY FROM FIREBASE");
-            }
-        });
+                    Log.i("HISTORY", "RETREIVE HISTORY SUCCESS");
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.i("HISTORY", "ERROR CANNOT RETREIVE HISTORY FROM FIREBASE");
+                }
+            });
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public int getAge(String dateOfBirth){
@@ -131,78 +135,94 @@ public class HistoryFragment extends Fragment {
     }
 
     public void initLogoutBtn() {
-        ImageView logoutBtn = getView().findViewById(R.id.main_btn_logout);
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                session.logoutUser();
-                Log.d("HISTORY", "Goto LoginFragment");
-                Extensions.goTo(getActivity(), new LoginFragment());
-            }
-        });
+        try {
+            ImageView logoutBtn = getView().findViewById(R.id.main_btn_logout);
+            logoutBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    session.logoutUser();
+                    Log.d("HISTORY", "Goto LoginFragment");
+                    Extensions.goTo(getActivity(), new LoginFragment());
+                }
+            });
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void showDialog(){
         //This func will show dialog when request = true
-        final Dialog dialog = new Dialog(getActivity());
-        dialog.setContentView(R.layout.dialog_custom);
-        dialog.setTitle("FORM");
+        try {
+            final Dialog dialog = new Dialog(getActivity());
+            dialog.setContentView(R.layout.dialog_custom);
+            dialog.setTitle("FORM");
 
-        Button accept = dialog.findViewById(R.id.dialog_accept);
-        TextView cancel = dialog.findViewById(R.id.dialog_cancel);
+            Button accept = dialog.findViewById(R.id.dialog_accept);
+            TextView cancel = dialog.findViewById(R.id.dialog_cancel);
 
-        accept.setEnabled(true);
-        cancel.setEnabled(true);
+            accept.setEnabled(true);
+            cancel.setEnabled(true);
 
-        accept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.cancel();
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.main_view, new FormFragment())
-                        .commit();
-            }
-        });
+            accept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.cancel();
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.main_view, new FormFragment())
+                            .commit();
+                }
+            });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.cancel();
-            }
-        });
+            cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.cancel();
+                }
+            });
 
-        dialog.show();
+            dialog.show();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void fetchRequest(){
         //This func will call showDialog when hospital request form
-        requestRef = database.getReference("/donor/form_request/" + TEST_USER_ID + "/");
-        requestRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                boolean request = dataSnapshot.child("request").getValue(boolean.class);
-                if(request){
-                    setRequest();
-                    try {
-                        showDialog();
-                    }catch (Exception e){
-                        e.printStackTrace();
+        try {
+            requestRef = database.getReference("/donor/form_request/" + session.getUsername() + "/");
+            requestRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    boolean request = dataSnapshot.child("request").getValue(boolean.class);
+                    if(request){
+                        setRequest();
+                        try {
+                            showDialog();
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                     }
+                    Log.i("REQUEST", "REQUEST : " + request);
                 }
-                Log.i("REQUEST", "REQUEST : " + request);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.i("REQUEST", "ERROR CAN'T GET REQUEST");
-            }
-        });
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.i("REQUEST", "ERROR CAN'T GET REQUEST");
+                }
+            });
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void setRequest(){
-        requestRef = database.getReference("/donor/form_request/" + TEST_USER_ID + "/");
-        requestRef.child("request").setValue(false);
-        Log.i("REQUEST", "SET REQUEST TO FALSE");
+        try {
+            requestRef = database.getReference("/donor/form_request/" + session.getUsername() + "/");
+            requestRef.child("request").setValue(false);
+            Log.i("REQUEST", "SET REQUEST TO FALSE");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

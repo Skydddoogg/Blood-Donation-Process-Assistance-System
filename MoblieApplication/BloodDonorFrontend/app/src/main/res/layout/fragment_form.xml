@@ -73,7 +73,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintBottom_toTopOf="@+id/form_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,6 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:paddingBottom="15dp"
             android:orientation="vertical"
             android:paddingTop="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -434,15 +435,14 @@
                 android:textColor="@color/common_google_signin_btn_text_light_pressed"
                 app:fontFamily="@font/prompt_light" />
 
-            <CheckBox
+            <EditText
+                android:layout_marginLeft="30dp"
                 android:id="@+id/q32"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:paddingBottom="5dp"
-                android:text="@string/q32"
-                android:textColor="@color/common_google_signin_btn_text_light_pressed"
-                app:fontFamily="@font/prompt_light" />
+                android:hint="อื่นๆ"
+                android:textSize="12dp"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 
@@ -458,7 +458,7 @@
         app:srcCompat="@drawable/back_icon" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/form_submit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"

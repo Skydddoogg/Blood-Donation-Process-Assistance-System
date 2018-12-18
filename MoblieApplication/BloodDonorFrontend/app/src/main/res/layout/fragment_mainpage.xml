@@ -146,7 +146,7 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="สามารถบริจาคได้อีกครั้งวันที่"
+                android:text="สามารถบริจาคได้อีกครั้งประมาณวันที่"
                 android:textColor="@color/common_google_signin_btn_text_dark_default"
                 app:fontFamily="@font/prompt_light"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -155,7 +155,7 @@
                 app:layout_constraintVertical_bias="0.100000024" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/mainpage_appropiate_date"
                 android:layout_width="wrap_content"
                 android:layout_height="47dp"
                 android:layout_marginStart="32dp"

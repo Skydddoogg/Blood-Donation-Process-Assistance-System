@@ -29,11 +29,14 @@ import com.nawinc27.mac.blooddonorfrontend.history.HistoryAdapter;
 import com.nawinc27.mac.blooddonorfrontend.loading.CustomLoadingDialog;
 import com.nawinc27.mac.blooddonorfrontend.maps.MapsActivity;
 import com.nawinc27.mac.blooddonorfrontend.utility.Extensions;
+import com.nawinc27.mac.blooddonorfrontend.utility.Months;
 import com.nawinc27.mac.blooddonorfrontend.utility.SessionManager;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class HistoryFragment extends Fragment {
 
@@ -131,6 +134,29 @@ public class HistoryFragment extends Fragment {
                         for (DataSnapshot child : dataSnapshot.getChildren()){
                             histories.add(child.getValue(History.class));
                         }
+
+                        TextView appropiate_date = getView().findViewById(R.id.mainpage_appropiate_date);
+                        String appropiateDateStr = "ท่านยังไม่ได้เข้ารับการบริจาคโลหิต";
+                        if (histories.size() != 0 || histories != null){
+                            History recent_his = histories.get(histories.size() - 1);
+                            String[] temps = recent_his.getDate().split("/");
+                            List<String> recent_date = Arrays.asList(temps);
+
+                            String month, year;
+
+                            if ((Integer.parseInt(recent_date.get(1)) + 3 > 12)){
+                                month = Integer.toString(((Integer.parseInt(recent_date.get(1)) + 3) - 12));
+                                year = Integer.toString((Integer.parseInt(recent_date.get(2)) + 1));
+                            } else {
+                                month = Integer.toString((Integer.parseInt(recent_date.get(1)) + 3));
+                                year = Integer.toString(Integer.parseInt(recent_date.get(2)));
+                            }
+
+                            appropiateDateStr = recent_date.get(0) + " " + Months.getInstance().getMonths().get(month) + " " + year;
+                        }
+
+                        appropiate_date.setText(appropiateDateStr);
+
                         Log.i("TESTTTT " , histories.size()+"");
                         Collections.reverse(histories);
                         times = getView().findViewById(R.id.main_number_donate);

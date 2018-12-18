@@ -61,7 +61,9 @@ h1,h2,h3,h4,h5{
 
 .menu div{
     position: relative;
-    
+    width: 110px;
+    word-wrap: break-word;
+    text-align: center;
 }
 
 .menu div a{
@@ -73,13 +75,16 @@ h1,h2,h3,h4,h5{
 .menu div a:hvoer{
 
 }
+.inside_menu_contianer{
+    width: 450px;
+}
 .active{
     position: relative;
 }
 .active ::after{
     content:"";
     width: 100%;
-    bottom: -26px;
+    bottom: -20px;
     left: 0;  
     position: absolute;
     border-bottom:2px solid #EC1D25;

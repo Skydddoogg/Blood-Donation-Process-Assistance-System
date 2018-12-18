@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nawinc27.mac.blooddonorfrontend.ResultVerification.PassResultFragment;
+import com.nawinc27.mac.blooddonorfrontend.ResultVerification.RejectResultFragment;
 import com.nawinc27.mac.blooddonorfrontend.utility.Extensions;
 import com.nawinc27.mac.blooddonorfrontend.utility.SessionManager;
 
@@ -46,7 +48,7 @@ public class LoginFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         session = new SessionManager(getContext());
         if (session.checkLogin()) {
-            Extensions.goTo(getActivity(), new HistoryFragment());
+            Extensions.goTo(getActivity(), new RejectResultFragment());
         } else {
             initLoginBtn();
         }

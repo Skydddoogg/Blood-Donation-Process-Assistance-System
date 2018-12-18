@@ -30,6 +30,7 @@
                                 <th scope="col">เลขบัตรประชาชน</th>
                                 <th scope="col">เบอร์โทร</th>
                                 <th scope="col">E-Mail</th>
+                                <th scope="col"><center>รายละเอียดอื่น ๆ</center></th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -42,7 +43,14 @@
                                     <td>{{ id_number }}</td>
                                     <td>{{ result_search['tel'][0] }}</td>
                                     <td>{{ result_search['email'][0] }}</td>
-                                    <td><a href="{{ url_for('donorProfilePage', id_number=id_number) }}"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
+                                    <td>
+                                        <center>
+                                            <a href="{{ url_for('donorProfilePage', id_number=id_number) }}">
+                                                <img src="../static/images/readmore-icon.svg" alt="">
+                                            </a>
+                                        </center>
+                                    </td>
+                                    <td><a style="text-decoration:none" href="{{ url_for('sendPreDonationForm', id_number=id_number) }}"><button class="activeButton" style="height: 20px;font-size: 12px;">ส่งแบบสอบถาม</button></a></td>
                                 </tr>
                             {% endif %}
                         </tbody>

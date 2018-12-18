@@ -23,7 +23,12 @@
                                 <tr>
                                     <td>{{ donors[donor] }}</td>
                                     <td>{{ donor }}</td>
-                                    <td><a href="{{ url_for('confirmation', request_form=donation_requests[donor]['form'], donor_id=donor, _external=True) }}"><img src="../static/images/readmore-icon.svg" alt=""></a></td>
+                                        <td>
+                                            <form action="{{ url_for('confirmation', request_form=donation_requests[donor]['form'], donor_id=donor, _external=True) }}" method="post">
+                                                <input type="image" src="../static/images/readmore-icon.svg", alt="Submit">
+                                                <!-- <img src="../static/images/readmore-icon.svg" alt="Submit"> -->
+                                            </form>
+                                        </td>
                                 </tr>
                             {% endfor %}
                         {% endif %}

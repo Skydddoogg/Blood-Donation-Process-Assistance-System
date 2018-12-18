@@ -36,23 +36,24 @@ def approvement():
         firebase.put(form_key + '/' + session['id'] + '/' + request.args.get('id_number'), 'form', form)
         return redirect('/requestInformation')
 
-@app.route('/confirmation/<request_form>', methods=['GET', 'POST'])
-def confirmation(request_form):
+@app.route('/confirmation', methods=['GET', 'POST'])
+def confirmation():
 
-    request_form = ast.literal_eval(request_form)
-    donor_id = request.args.get('donor_id')
+    if request.method == 'POST':
+        request_form = ast.literal_eval(request.args.get('request_form'))
+        donor_id = request.args.get('donor_id')
 
-    form_for_show = {}
+        form_for_show = {}
 
-    for field in request_form:
-        if request_form[field] == True:
-            form_for_show[field] = "ใช่"
-        elif request_form[field] == False:
-            form_for_show[field] = "ไม่ใช่"
-        else:
-            form_for_show[field] = request_form[field]
+        for field in request_form:
+            if request_form[field] == True:
+                form_for_show[field] = "ใช่"
+            elif request_form[field] == False:
+                form_for_show[field] = "ไม่ใช่"
+            else:
+                form_for_show[field] = request_form[field]
 
-    return render_template('confirmation.html', form_for_show=form_for_show, donor_id=donor_id, raw_form=request_form)
+        return render_template('confirmation.html', form_for_show=form_for_show, donor_id=donor_id, raw_form=request_form)
 
 @app.route('/requestInformation', methods=['GET', 'POST'])
 def requestInformation():
@@ -75,18 +76,17 @@ def requestInformation():
         donors = None
 
     return render_template('request_information.html', donation_requests=donation_requests, donors=donors)
-
-@app.route('/searchResult', methods=['POST'])
+    
+@app.route('/searchResult', methods=['GET', 'POST'])
 def searchForDonor():
 
-    if request.method == 'POST':
-        required_id_number = request.form['required_id_number']
+    required_id_number = request.form['required_id_number']
 
-        if required_id_number == '':
-            return redirect('/')
-        else:
-            result = firebase.get(donor_profile_key + '/' + required_id_number, None)
-            return index(result, required_id_number)
+    if (required_id_number == '') or (required_id_number is None):
+        return redirect('/')
+    else:
+        result = firebase.get(donor_profile_key + '/' + required_id_number, None)
+        return index(result, required_id_number)
 
 
 @app.route('/recordBloodDonation/<id_number>', methods=['GET', 'POST'])
@@ -129,7 +129,7 @@ def sendPreDonationForm(id_number):
 
     return redirect('/donorProfile/' + id_number)
 
-@app.route('/donorProfile/<id_number>')
+@app.route('/donorProfile/<id_number>', methods=['GET', 'POST'])
 def donorProfilePage(id_number):
 
     # Get all blood donation records of a specified donor

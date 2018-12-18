@@ -121,21 +121,24 @@ public class HistoryFragment extends Fragment {
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    ListView historyList = getView().findViewById(R.id.main_history_donor);
-                    final HistoryAdapter historyAdapter = new HistoryAdapter(getActivity(),
-                            R.layout.list_item_history, histories);
-                    historyList.setAdapter(historyAdapter);
-                    histories.clear();
-                    for (DataSnapshot child : dataSnapshot.getChildren()){
-                        histories.add(child.getValue(History.class));
-                    }
-                    Log.i("TESTTTT " , histories.size()+"");
-                    Collections.reverse(histories);
-                    times = getView().findViewById(R.id.main_number_donate);
-                    times.setText(""+histories.size());
+                    ListView historyList;
+                    if (getView() != null){
+                        historyList = getView().findViewById(R.id.main_history_donor);
+                        final HistoryAdapter historyAdapter = new HistoryAdapter(getActivity(),
+                                R.layout.list_item_history, histories);
+                        historyList.setAdapter(historyAdapter);
+                        histories.clear();
+                        for (DataSnapshot child : dataSnapshot.getChildren()){
+                            histories.add(child.getValue(History.class));
+                        }
+                        Log.i("TESTTTT " , histories.size()+"");
+                        Collections.reverse(histories);
+                        times = getView().findViewById(R.id.main_number_donate);
+                        times.setText(""+histories.size());
 
-                    customLoadingDialog.dismissDialog();
-                    Log.i("HISTORY", "RETREIVE HISTORY SUCCESS");
+                        customLoadingDialog.dismissDialog();
+                        Log.i("HISTORY", "RETREIVE HISTORY SUCCESS");
+                    }
                 }
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
@@ -239,16 +242,18 @@ public class HistoryFragment extends Fragment {
             requestRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    boolean request = dataSnapshot.child("request").getValue(boolean.class);
-                    if(request){
-                        setRequest();
-                        try {
-                            showDialog();
-                        }catch (Exception e){
-                            e.printStackTrace();
+                    if (dataSnapshot.hasChild("request")){
+                        boolean request = dataSnapshot.child("request").getValue(boolean.class);
+                        if(request){
+                            setRequest();
+                            try {
+                                showDialog();
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
                         }
+                        Log.i("REQUEST", "REQUEST : " + request);
                     }
-                    Log.i("REQUEST", "REQUEST : " + request);
                 }
 
                 @Override

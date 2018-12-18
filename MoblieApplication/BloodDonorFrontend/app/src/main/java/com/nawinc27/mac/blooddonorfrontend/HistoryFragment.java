@@ -1,6 +1,7 @@
 package com.nawinc27.mac.blooddonorfrontend;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -24,6 +25,7 @@ import com.nawinc27.mac.blooddonorfrontend.form.Form;
 import com.nawinc27.mac.blooddonorfrontend.history.History;
 import com.nawinc27.mac.blooddonorfrontend.history.HistoryAdapter;
 import com.nawinc27.mac.blooddonorfrontend.loading.CustomLoadingDialog;
+import com.nawinc27.mac.blooddonorfrontend.maps.MapsActivity;
 import com.nawinc27.mac.blooddonorfrontend.utility.Extensions;
 import com.nawinc27.mac.blooddonorfrontend.utility.SessionManager;
 import java.sql.Timestamp;
@@ -79,7 +81,9 @@ public class HistoryFragment extends Fragment {
         goto_from_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Extensions.goTo(getActivity(), new FormFragment());
+                Log.d("HISTORY", "Goto MapFragment");
+                Intent intent = new Intent(getContext(), MapsActivity.class);
+                getContext().startActivity(intent);
             }
         });
     }

@@ -51,7 +51,7 @@ public class FormFragment extends Fragment {
         session = new SessionManager(getContext());
         hospitalName = getView().findViewById(R.id.spinner1);
         submitForm = getView().findViewById(R.id.form_submit);
-        backButton = getView().findViewById(R.id.imageView5);
+        backButton = getView().findViewById(R.id.back_btn_form);
 
         initQuestion();
         initBackBtn();

@@ -127,7 +127,7 @@ def sendPreDonationForm(id_number):
     # Switch request status for specified donor (False -> True)
     firebase.put(form_request_checker, id_number, {"hospital_id": session["id"], "hospital_name": session["username"], "request": True})
 
-    return redirect('/donorProfile/' + id_number)
+    return redirect('/')
 
 @app.route('/donorProfile/<id_number>', methods=['GET', 'POST'])
 def donorProfilePage(id_number):

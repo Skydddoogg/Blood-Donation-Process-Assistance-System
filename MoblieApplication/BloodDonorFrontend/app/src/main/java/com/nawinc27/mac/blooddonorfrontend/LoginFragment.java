@@ -48,7 +48,7 @@ public class LoginFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         session = new SessionManager(getContext());
         if (session.checkLogin()) {
-            Extensions.goTo(getActivity(), new RejectResultFragment());
+            Extensions.goTo(getActivity(), new HistoryFragment());
         } else {
             initLoginBtn();
         }

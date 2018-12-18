@@ -281,15 +281,19 @@ public class FormFragment extends Fragment {
     }
 
     public void passBundle(){
-        clearFragmentBackstack();
+        try {
+            clearFragmentBackstack();
 
-        fragmentManager = getActivity().getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentManager = getActivity().getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
 
-        historyFragment = new HistoryFragment();
-        historyFragment.setArguments(bundle);
+            historyFragment = new HistoryFragment();
+            historyFragment.setArguments(bundle);
 
-        fragmentTransaction.replace(R.id.main_view, historyFragment);
-        fragmentTransaction.commit();
+            fragmentTransaction.replace(R.id.main_view, historyFragment);
+            fragmentTransaction.commit();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

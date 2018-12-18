@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nawinc27.mac.blooddonorfrontend.ResultVerification.PassResultFragment;
+import com.nawinc27.mac.blooddonorfrontend.ResultVerification.RejectResultFragment;
 import com.nawinc27.mac.blooddonorfrontend.form.Form;
 import com.nawinc27.mac.blooddonorfrontend.history.History;
 import com.nawinc27.mac.blooddonorfrontend.history.HistoryAdapter;
@@ -296,12 +298,15 @@ public class HistoryFragment extends Fragment {
                         setApprove();
                         if(formBuffer.getApprove().equals("accepted")){
                             try {
+                                moveToResultFragment(new PassResultFragment());
                                 Log.i("APPROVE", formBuffer.getApprove() + "");
+
                             }catch (Exception e){
                                 e.printStackTrace();
                             }
-                        }else{
+                        }else if(formBuffer.getApprove().equals("rejected")){
                             try {
+                                moveToResultFragment(new RejectResultFragment());
                                 Log.i("APPROVE", formBuffer.getApprove() + "");
                             }catch (Exception e){
                                 e.printStackTrace();
@@ -323,6 +328,29 @@ public class HistoryFragment extends Fragment {
         try {
             approveRef = database.getReference("/officer/form/" + getFetchHospitalId() + "/" + session.getUsername() + "/");
             approveRef.child("form").child("approve").setValue("proved");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void clearFragmentBackstack(){
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
+    }
+
+    public void moveToResultFragment(Fragment fragment){
+        try {
+            clearFragmentBackstack();
+
+            fragmentManager = getActivity().getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+
+            fragment.setArguments(bundle);
+
+            fragmentTransaction.replace(R.id.main_view, fragment);
+            fragmentTransaction.commit();
         } catch (Exception e){
             e.printStackTrace();
         }

@@ -67,7 +67,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/reject_userId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ผลการตรวจสอบคุณสมบัติ ของ คุณ แมส สะกี้"
@@ -86,7 +86,7 @@
                 app:fontFamily="@font/prompt_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/reject_userId" />
 
             <TextView
                 android:id="@+id/textView13"
@@ -115,12 +115,12 @@
                 android:text="ตรวจสอบโดย"
                 android:textSize="12sp"
                 app:fontFamily="@font/prompt_medium"
-                app:layout_constraintBottom_toTopOf="@+id/textView16"
+                app:layout_constraintBottom_toTopOf="@+id/reject_hospitalId"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/reject_hospitalId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -130,12 +130,12 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="12sp"
                 app:fontFamily="@font/prompt_bold"
-                app:layout_constraintBottom_toTopOf="@+id/button2"
+                app:layout_constraintBottom_toTopOf="@+id/reject_button"
                 app:layout_constraintEnd_toEndOf="@+id/textView15"
                 app:layout_constraintStart_toStartOf="@+id/textView15" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/reject_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

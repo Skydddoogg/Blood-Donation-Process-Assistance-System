@@ -137,7 +137,7 @@ public class HistoryFragment extends Fragment {
 
                         TextView appropiate_date = getView().findViewById(R.id.mainpage_appropiate_date);
                         String appropiateDateStr = "ท่านยังไม่ได้เข้ารับการบริจาคโลหิต";
-                        if (histories.size() != 0 || histories != null){
+                        if (histories.size() != 0 && histories != null){
                             History recent_his = histories.get(histories.size() - 1);
                             String[] temps = recent_his.getDate().split("/");
                             List<String> recent_date = Arrays.asList(temps);

@@ -97,7 +97,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:text="กรุณาเปิดหน้านี้ให้เจ้าหน้าที่ดูก่อนการให้การบริจาคเลือด"
+                android:text=""
                 android:textSize="12sp"
                 app:fontFamily="@font/prompt_medium"
                 app:layout_constraintEnd_toEndOf="parent"

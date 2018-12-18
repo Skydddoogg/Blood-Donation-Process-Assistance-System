@@ -54,14 +54,14 @@ public class RejectResultFragment extends Fragment {
     public String getFetchHospitalId(){
         if(getArguments() != null){
             bundle = getArguments();
-            return bundle.getString("hospitalid");
+            return bundle.getString("hospitalname");
         }else {
             return "null";
         }
     }
 
     public void initUserIdAndHospitalId(TextView userId, TextView hospitalId){
-        userId.setText("ผลการตรวจสอบคุณสมบัติของหมายเลข : " + session.getUsername());
+        userId.setText("ผลการตรวจสอบของ: " + session.getUsername());
         hospitalId.setText(getFetchHospitalId());
     }
 

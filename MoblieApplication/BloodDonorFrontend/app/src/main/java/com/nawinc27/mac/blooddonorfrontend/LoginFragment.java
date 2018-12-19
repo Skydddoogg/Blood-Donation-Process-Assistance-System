@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nawinc27.mac.blooddonorfrontend.ResultVerification.PassResultFragment;
 import com.nawinc27.mac.blooddonorfrontend.ResultVerification.RejectResultFragment;
+import com.nawinc27.mac.blooddonorfrontend.loading.CustomLoadingDialog;
 import com.nawinc27.mac.blooddonorfrontend.utility.Extensions;
 import com.nawinc27.mac.blooddonorfrontend.utility.SessionManager;
 
@@ -34,6 +35,7 @@ public class LoginFragment extends Fragment {
     private String username;
     private String password;
     private String hashedPassword;
+    private CustomLoadingDialog customLoadingDialog;
 
     @Nullable
     @Override
@@ -47,6 +49,7 @@ public class LoginFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         session = new SessionManager(getContext());
+        customLoadingDialog = new CustomLoadingDialog(getContext());
         if (session.checkLogin()) {
             Extensions.goTo(getActivity(), new HistoryFragment());
         } else {
@@ -59,6 +62,7 @@ public class LoginFragment extends Fragment {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                customLoadingDialog.showDialog();
                 username = ((EditText) getView()
                         .findViewById(R.id.login_id_number))
                         .getText()
@@ -82,9 +86,11 @@ public class LoginFragment extends Fragment {
                 try {
                     if (hashedPassword.equals(dataSnapshot.getValue(String.class))) {
                         session.createLoginSession(username);
+                        customLoadingDialog.dismissDialog();
                         Extensions.goTo(getActivity(), new HistoryFragment());
                         Log.d("LOGIN", "GO TO HOMEPAGE");
                     } else {
+                        customLoadingDialog.dismissDialog();
                         Toast.makeText(
                                 getActivity(), "รหัสผ่านไม่ถูกต้อง", Toast.LENGTH_SHORT
                         ).show();

@@ -46,7 +46,11 @@ def confirmation():
         form_for_show = {}
 
         for field in request_form:
-            if request_form[field] == True:
+            if (field == "question2") and (request_form[field] != 0):
+                form_for_show[field] = request_form[field]
+            elif (field == "question2") and (request_form[field] == 0):
+                form_for_show[field] = "-"
+            elif request_form[field] == True:
                 form_for_show[field] = "ใช่"
             elif request_form[field] == False:
                 form_for_show[field] = "ไม่ใช่"
